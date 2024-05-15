@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix India &ndash; Watch TV Shows Online, Watch Movies Online</title>
+    <meta name="description" content="Watch Netflix movies &amp; TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.">
+    <meta name="keywords" content="watch movies, movies online, watch TV, TV online, TV shows online, watch TV shows, stream movies, stream tv, instant streaming, watch online, movies, watch movies India, watch TV online, no download, full length movies">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <div class="bg-container">
+        <img src="./assets/images/bg.jpg" alt="bg" class="bg-img">
+        <div class="bg-filter"></div>
+
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <img src="./assets/images/logo.svg" alt="logo" width="148" class="main-logo">
+            </div>
+
+            <div class="nav-right-container">
+                <!-- Language Selector -->
+                <div class="lang-selector-container">
+                    <select name="lang-select" class="lang-selector">
+                        <option value="eng" selected>English</option>
+                        <option value="hindi">हिंदी</option>
+                    </select>
+                    <img src="./assets/images/down-arrow.svg" alt="." class="lang-down-arrow" height="8">
+                </div>
+
+                <!-- Sign In Button -->
+                <a href="#" class="btn btn-red btn-small">Sign In</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <h1 class="hero-heading">Unlimited movies, TV shows and more</h1>
+            <p class="hero-subtitle">Watch anywhere. Cancel anytime.</p>
+
+            <!-- Call to Action (CTA) Form -->
+            <div class="cta-container">
+                <form action="#" class="cta-subscribe-container">
+                    <h3 class="cta-title">Ready to watch? Enter your email to create or restart your membership.</h3>
+
+                    <!-- Email Input and Button -->
+                    <div class="form">
+                        <div class="email-container">
+                            <input type="email" name="subscribe-email" id="hero-subscribe-email" class="subscribe-email" required autocomplete="email" placeholder=" ">
+                            <label for="hero-subscribe-email" class="email-label">Email address</label>
+                        </div>
+                        <button class="btn btn-red btn-large">Get Started <img src="./assets/images/right-arrow.svg" alt="."></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Value Propositions Section -->
+    <section class="value-props-container">
+        <!-- Value Proposition 1 -->
+        <div class="prop-cover">
+            <div class="value-prop">
+                <div class="prop-body">
+                    <h2 class="prop-title">Enjoy on your TV</h2>
+                    <p class="prop-desc">Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+                </div>
+                <div class="prop-img-container">
+                    <img src="./assets/images/tv.png" alt="img" width="580.33" class="prop-img">
+                    <video src="./assets/videos/video-tv.m4v" autoplay muted loop class="tv-vid" width="480"></video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Proposition 2 -->
+        <div class="prop-cover">
+            <div class="value-prop">
+                <div class="prop-body">
+                    <h2 class="prop-title">Download your shows to watch offline</h2>
+                    <p class="prop-desc">Save your favorites easily and always have something to watch.</p>
+                </div>
+                <div class="prop-img-container" id="stranger-container-id">
+                    <img src="./assets/images/mobile-stranger.jpg" alt="img" width="580.33" class="prop-img">
+                    <div class="stranger-card">
+                        <div class="cover-container">
+                            <img src="./assets/images/stranger-cover.png" alt="." width="50" class="stranger-cover-img">
+                        </div>
+                        <div class="down-text">
+                            <div>Stranger Things</div>
+                            <div class="blue-down-text">Downloading...</div>
+                        </div>
+                        <div class="down-icon-container">
+                            <img src="./assets/images/download-icon.gif" alt="." class="down-icon" width="48">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Proposition 3 -->
+        <div class="prop-cover">
+            <div class="value-prop">
+                <div class="prop-body">
+                    <h2 class="prop-title">Watch everywhere</h2>
+                    <p class="prop-desc">Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+                </div>
+                <div class="prop-img-container">
+                    <img src="./assets/images/device-pile.png" alt="img" width="580.33" class="prop-img">
+                    <video src="./assets/videos/video-pile.m4v" autoplay muted loop class="pile-vid" width="480"></video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Proposition 4 -->
+        <div class="prop-cover">
+            <div class="value-prop">
+                <div class="prop-body">
+                    <h2 class="prop-title">Create profiles for kids</h2>
+                    <p class="prop-desc">Send children on adventures with their favorite characters in a space made just for them&mdash;free with your membership.</p>
+                </div>
+                <div class="prop-img-container">
+                    <img src="./assets/images/children-section.png" alt="img" width="580.33" class="prop-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <!-- Frequently Asked Questions -->
+        <div class="value-prop faq-wrapper">
+            <div class="faq-container">
+                <h2 class="faq-title prop-title">Frequently Asked Questions</h2>
+                <div class="faq-box">
+                    <button class="faq">
+                        <span>What is Netflix?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                    <button class="faq">
+                        <span>How much does Netflix cost?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                    <button class="faq">
+                        <span>Where can I watch?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                    <button class="faq">
+                        <span>How do I cancel?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                    <button class="faq">
+                        <span>What can I watch on Netflix?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                    <button class="faq">
+                        <span>Is Netflix good for kids?</span>
+                        <img src="./assets/images/cross24.svg" alt="X" width="24" class="cross-24">
+                        <img src="./assets/images/cross36.svg" alt="X" class="cross-36" width="36">
+                    </button>
+                </div>
+            </div>
+
+            <!-- CTA Form for FAQ Section -->
+            <div class="cta-container faq-sub">
+                <form action="#" class="cta-subscribe-container">
+                    <h3 class="cta-title">Ready to watch? Enter your email to create or restart your membership.</h3>
+                    <div class="form">
+                        <div class="email-container">
+                            <input type="email" name="subscribe-email" id="hero-subscribe-email" class="subscribe-email" required autocomplete="email" placeholder=" ">
+                            <label for="hero-subscribe-email" class="email-label">Email address</label>
+                        </div>
+                        <button class="btn btn-red btn-large">Get Started <img src="./assets/images/right-arrow.svg" alt="."></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Other Links -->
+            <div class="other-links">
+                <span class="footer-opener">
+                    Questions? Call <a href="#" class="footer-link">000-800-919-1694</a>
+                </span>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Help Centre</a>
+                <a href="#" class="footer-link">Account</a>
+                <a href="#" class="footer-link">Media Centre</a>
+                <a href="#" class="footer-link">Investor Relations</a>
+                <a href="#" class="footer-link">Jobs</a>
+                <a href="#" class="footer-link">Ways to Watch</a>
+                <a href="#" class="footer-link">Terms of Use</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Cookie Preferences</a>
+                <a href="#" class="footer-link">Corporate Information</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">Speed Test</a>
+                <a href="#" class="footer-link">Legal Notices</a>
+                <a href="#" class="footer-link">Only on Netflix</a>
+            </div>
+
+            <!-- Language Selector in Footer -->
+            <div class="lang-selector-container">
+                <select name="lang-select" class="lang-selector foot-lang-selector">
+                    <option value="eng" selected>English</option>
+                    <option value="hindi">हिंदी</option>
+                </select>
+                <img src="./assets/images/down-arrow.svg" alt="." class="lang-down-arrow" height="8">
+            </div>
+
+            <!-- Company Name -->
+            <div class="company-name-container">
+                <span>Netflix India</span>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
