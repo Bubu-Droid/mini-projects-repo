@@ -10,8 +10,8 @@ TBH after realizing the amount of time I have spent away behind making this proj
 
 ### Original Netflix Website Screenshot
 
-![screencapture-netflix-in-2023-11-28-19_35_01](https://github.com/Bubu-Droid/netflix-clone/assets/71329070/7cb1b66b-f9ed-4470-ad3b-51fdf58667ee)
+![screencapture-netflix-in-2023-11-28-19_35_01](https://i.imgur.com/0Q7LugR.png)
 
 ### My clone's Screenshot
 
-![screencapture-127-0-0-1-5500-index-html-2023-11-28-19_34_29](https://github.com/Bubu-Droid/netflix-clone/assets/71329070/3b39aaea-d303-406d-8d61-44a7a629124d)
+![screencapture-127-0-0-1-5500-index-html-2023-11-28-19_34_29](https://i.imgur.com/973VhaW.png)
