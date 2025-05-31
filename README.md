@@ -1,3 +1,5 @@
 # About the Repository
 
-This is a repository that has some mini-projects which are not big enough to have a dedicated repository for themselves.
+This repository contains
+some mini-projects that are not big enough to have
+their own dedicated repositories.
