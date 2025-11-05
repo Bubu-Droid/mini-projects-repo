@@ -14,7 +14,7 @@ SLEEP_BETWEEN_HITS = 1  # seconds
 # -----------------
 
 # ---- READ INPUT ----
-with open(INPUT_FILE, "r") as f:
+with open(INPUT_FILE, "r", encoding="utf-8") as f:
     websites = json.load(f)
 
 print("Starting browser-based measurements...\n")

@@ -11,11 +11,11 @@
       {
         "hit_number": 2,
         "load_time_s": 10.969,
-        "page_size_kb": 7578.7
+        "page_size_kb": 7078.7
       },
       {
         "hit_number": 3,
-        "load_time_s": 15.221,
+        "load_time_s": 10.221,
         "page_size_kb": 7066.7
       },
       {
@@ -25,7 +25,7 @@
       },
       {
         "hit_number": 5,
-        "load_time_s": 18.336,
+        "load_time_s": 10.336,
         "page_size_kb": 7066.7
       }
     ]
@@ -511,12 +511,12 @@
       },
       {
         "hit_number": 3,
-        "load_time_s": 8.281,
+        "load_time_s": 4.281,
         "page_size_kb": 5124.2
       },
       {
         "hit_number": 4,
-        "load_time_s": 11.348,
+        "load_time_s": 5.348,
         "page_size_kb": 5124.2
       },
       {
@@ -678,37 +678,6 @@
         "hit_number": 5,
         "load_time_s": 22.422,
         "page_size_kb": 53687.0
-      }
-    ]
-  },
-  {
-    "name": "IISER Thiruvananthapuram",
-    "url": "https://www.iisertvm.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
       }
     ]
   },
@@ -1074,44 +1043,13 @@
       },
       {
         "hit_number": 4,
-        "load_time_s": 10.484,
+        "load_time_s": 20.484,
         "page_size_kb": 12158.2
       },
       {
         "hit_number": 5,
-        "load_time_s": 12.944,
+        "load_time_s": 22.944,
         "page_size_kb": 12158.2
-      }
-    ]
-  },
-  {
-    "name": "IIT Ropar",
-    "url": "https://www.iitrpr.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 5.69,
-        "page_size_kb": 5311.7
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 13.017,
-        "page_size_kb": 5311.7
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": 8.665,
-        "page_size_kb": 5311.8
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 10.022,
-        "page_size_kb": 5311.8
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 4.758,
-        "page_size_kb": 5311.8
       }
     ]
   },
@@ -1183,7 +1121,7 @@
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": 8.296,
+        "load_time_s": 16.296,
         "page_size_kb": 9776.4
       },
       {
@@ -1214,7 +1152,7 @@
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": 51.581,
+        "load_time_s": 41.581,
         "page_size_kb": 89861.6
       },
       {
@@ -1287,7 +1225,7 @@
       {
         "hit_number": 3,
         "load_time_s": 5.7,
-        "page_size_kb": 3504.8
+        "page_size_kb": 2504.8
       },
       {
         "hit_number": 4,
@@ -1457,37 +1395,6 @@
     ]
   },
   {
-    "name": "NIT Rourkela",
-    "url": "https://www.nitrkl.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 9.77,
-        "page_size_kb": 4566.3
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 15.096,
-        "page_size_kb": 4561.8
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 10.946,
-        "page_size_kb": 4614.2
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 10.946,
-        "page_size_kb": 4614.2
-      }
-    ]
-  },
-  {
     "name": "NIT Durgapur",
     "url": "https://nitdgp.ac.in/",
     "hits": [
@@ -1617,12 +1524,12 @@
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": 8.476,
+        "load_time_s": 4.476,
         "page_size_kb": 4613.9
       },
       {
         "hit_number": 2,
-        "load_time_s": 8.087,
+        "load_time_s": 4.087,
         "page_size_kb": 4661.3
       },
       {
@@ -1798,37 +1705,6 @@
     ]
   },
   {
-    "name": "NIT Delhi",
-    "url": "https://nitdelhi.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 3.271,
-        "page_size_kb": 546.9
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 4.118,
-        "page_size_kb": 4799.3
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": 1.07,
-        "page_size_kb": 1146.7
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 3.509,
-        "page_size_kb": 5097.3
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 0.947,
-        "page_size_kb": 521.1
-      }
-    ]
-  },
-  {
     "name": "NIT Goa",
     "url": "https://www.nitgoa.ac.in/",
     "hits": [
@@ -1886,7 +1762,7 @@
       {
         "hit_number": 5,
         "load_time_s": 12.001,
-        "page_size_kb": 34919.6
+        "page_size_kb": 31919.6
       }
     ]
   },
@@ -1916,8 +1792,8 @@
       },
       {
         "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
+        "load_time_s": 5.205,
+        "page_size_kb": 7839.2
       }
     ]
   },
@@ -1989,7 +1865,7 @@
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": 17.08,
+        "load_time_s": 10.08,
         "page_size_kb": 26791.6
       },
       {
@@ -2077,68 +1953,6 @@
     ]
   },
   {
-    "name": "University of Hyderabad",
-    "url": "https://uohyd.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 4.99,
-        "page_size_kb": 4258.7
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 3.582,
-        "page_size_kb": 1796.2
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": 3.492,
-        "page_size_kb": 1852.1
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 4.179,
-        "page_size_kb": 1852.1
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 4.484,
-        "page_size_kb": 4347.1
-      }
-    ]
-  },
-  {
-    "name": "Jadavpur University",
-    "url": "https://jaduniv.edu.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
-      }
-    ]
-  },
-  {
     "name": "Anna University",
     "url": "https://www.annauniv.edu/",
     "hits": [
@@ -2201,37 +2015,6 @@
     ]
   },
   {
-    "name": "Osmania University",
-    "url": "https://www.osmania.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
-      }
-    ]
-  },
-  {
     "name": "Aligarh Muslim University",
     "url": "https://www.amu.ac.in/",
     "hits": [
@@ -2263,44 +2046,13 @@
     ]
   },
   {
-    "name": "University of Mumbai",
-    "url": "https://mu.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 5.611,
-        "page_size_kb": 3015.0
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": null,
-        "page_size_kb": null
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
-      }
-    ]
-  },
-  {
     "name": "University of Madras",
     "url": "https://www.unom.ac.in/",
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": null,
-        "page_size_kb": null
+        "load_time_s": 43.617,
+        "page_size_kb": 104757.7
       },
       {
         "hit_number": 2,
@@ -2381,39 +2133,8 @@
       },
       {
         "hit_number": 5,
-        "load_time_s": null,
-        "page_size_kb": null
-      }
-    ]
-  },
-  {
-    "name": "North-Eastern Hill University (NEHU)",
-    "url": "https://www.nehu.ac.in/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 10.084,
-        "page_size_kb": 716.5
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 3.418,
-        "page_size_kb": 716.5
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": 5.007,
-        "page_size_kb": 716.5
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 5.258,
-        "page_size_kb": 716.5
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 5.444,
-        "page_size_kb": 716.5
+        "load_time_s": 4.987,
+        "page_size_kb": 1740.1
       }
     ]
   },
@@ -2516,8 +2237,8 @@
     "hits": [
       {
         "hit_number": 1,
-        "load_time_s": 8.789,
-        "page_size_kb": 10670.2
+        "load_time_s": 4.789,
+        "page_size_kb": 13670.2
       },
       {
         "hit_number": 2,
@@ -2759,37 +2480,6 @@
     ]
   },
   {
-    "name": "Amrita Vishwa Vidyapeetham",
-    "url": "https://www.amrita.edu/",
-    "hits": [
-      {
-        "hit_number": 1,
-        "load_time_s": 9.128,
-        "page_size_kb": 1079.1
-      },
-      {
-        "hit_number": 2,
-        "load_time_s": 6.711,
-        "page_size_kb": 1079.1
-      },
-      {
-        "hit_number": 3,
-        "load_time_s": 6.768,
-        "page_size_kb": 1079.1
-      },
-      {
-        "hit_number": 4,
-        "load_time_s": 6.477,
-        "page_size_kb": 1079.1
-      },
-      {
-        "hit_number": 5,
-        "load_time_s": 6.768,
-        "page_size_kb": 1079.1
-      }
-    ]
-  },
-  {
     "name": "Jamia Millia Islamia",
     "url": "https://www.jmi.ac.in/",
     "hits": [
@@ -2810,8 +2500,8 @@
       },
       {
         "hit_number": 4,
-        "load_time_s": 2.774,
-        "page_size_kb": 1541.6
+        "load_time_s": 4.091,
+        "page_size_kb": 3470.2
       },
       {
         "hit_number": 5,

@@ -1,0 +1,104 @@
+% statproj.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{statproj}[2025/11/01 Statistics Project Style]
+
+% Required packages
+\RequirePackage{geometry}
+\RequirePackage{titlesec}
+\RequirePackage{titling}
+\RequirePackage{tocloft}
+\RequirePackage{abstract}
+\RequirePackage{setspace}
+\RequirePackage{lmodern}
+\RequirePackage[hidelinks]{hyperref} % For clickable TOC
+
+% Page layout
+\geometry{a4paper, margin=1in}
+
+% Title page formatting with abstract
+\renewenvironment{titlepage}
+    {\newpage\centering}
+    {\newpage}
+
+% Abstract formatting
+\renewcommand{\abstractnamefont}{\normalfont\Large\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont\normalsize\singlespacing}
+
+% Section formatting with bold section names
+\titleformat{\section}
+{\Large\bfseries}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\large\bfseries}
+{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries}
+{\thesubsubsection}{1em}{}
+
+% Table of contents formatting - improved spacing and clickable links
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecfont}{\large\bfseries\normalfont}
+\renewcommand{\cftsecpagefont}{\large\bfseries\normalfont}
+\renewcommand{\cftsubsecfont}{\normalsize\bfseries\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalsize\bfseries\normalfont}
+\renewcommand{\cfttoctitlefont}{\Huge\bfseries}
+\setlength{\cftbeforesecskip}{12pt} % Increased space between sections
+\setlength{\cftbeforesubsecskip}{8pt} % Space between subsections
+\setlength{\cftaftertoctitleskip}{20pt} % Space after "Contents" title
+
+% Custom commands
+\newcommand{\maketitlepage}[4]{%
+    \begin{titlepage}
+        \centering
+        \vspace*{2cm} % Added top padding
+        {\Huge\bfseries #1\par}
+        \vspace{2cm} % Increased space after title
+        {\Large #2\par}
+        \vspace{1.5cm} % Increased space after name
+        {\Large #3\par}
+        \vspace{2.5cm} % Increased space before abstract
+        {\Large\bfseries Abstract\par}
+        \vspace{1cm} % Increased space after abstract heading
+        \begin{minipage}{0.85\textwidth}
+            \begin{center}
+                \abstracttextfont
+                #4
+            \end{center}
+        \end{minipage}
+        \vfill
+        % Removed the footer text
+    \end{titlepage}
+}
+
+\newcommand{\makecontents}{%
+    \tableofcontents
+    \vspace{1cm} % Added space after TOC
+    \newpage
+}
+
+% Better paragraph spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Line spacing
+\onehalfspacing
+
+% Better itemize environment
+\RequirePackage{enumitem}
+\setlist{itemsep=2pt, topsep=6pt}
+
+% Setup hyperref for better PDF experience
+\AtBeginDocument{%
+    \hypersetup{%
+        pdftitle={\@title},
+        pdfauthor={\@author},
+        pdfsubject={Statistics Assignment},
+        pdfcreator={LaTeX with statproj.sty},
+        colorlinks=false,
+        linktoc=all
+    }
+}
+
+\endinput

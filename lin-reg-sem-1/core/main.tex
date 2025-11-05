@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage{statproj}
+
+\title{Statistical Analysis of the Relationship Between Website Page Size and Load Time}
+\author{Avigyan Chakraborty (BS2516)}
+\date{November, 2025}
+
+\begin{document}
+
+% First page with title, name, date, and abstract
+\maketitlepage{\thetitle}{\theauthor}{\thedate}{
+% Your abstract content will go here
+This is where you'll write your abstract content later. You can replace this text with your actual abstract when you're ready. The abstract should provide a brief overview of your statistics assignment, including the main objectives, methods, and key findings.
+
+You can write multiple paragraphs here. The formatting will handle the spacing and make it look professional and well-organized for your statistics assignment.
+}
+
+% Second page with table of contents (clickable links and improved spacing)
+\makecontents
+
+% Third page - start your project here
+\section{Introduction}
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+
+\section{Data Description}
+
+The dataset used in this project was generated using
+an automated script which reads the list of websites from
+\texttt{website\_list.json} and makes five HTTP requests
+to each site and records two key metrics for each attempt:
+
+\begin{itemize}
+  \item \textbf{Page load time (in seconds):}
+    The total time required
+    for the page to fully load under a web-browser instance.
+  \item \textbf{Page size (in kilobytes):}
+    The total size of loaded
+    webpage including all its resources.
+\end{itemize}
+
+These raw measurements were then dumped into
+\texttt{website\_load\_data.json} which was then piped into
+the script \texttt{make\_avg\_csv.py} which calculates
+the average of five entries for each website and then
+writes the data into \texttt{averaged\_data.csv}
+in a structured manner.
+
+\end{document}
