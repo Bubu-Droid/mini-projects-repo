@@ -13,3 +13,6 @@ Rscript summary-stat.R
 
 Rscript residual-plot.R
 mv Rplots.pdf residual-plot.pdf
+
+Rscript residual-hist.R
+mv Rplots.pdf residual-hist.pdf

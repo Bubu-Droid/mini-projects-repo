@@ -33,11 +33,12 @@ Your content starts here. This section will introduce your statistical analysis 
 
 \section{Data Description}
 
-The dataset used in this project was generated using
-an automated script which reads the list of websites,
-containing $82$ entries, from
-\texttt{website\_list.json} and makes five HTTP requests
-to each site and records two key metrics for each attempt:
+The dataset used in this project was generated
+using an automated Python script that reads a
+list of websites containing 82 entries
+from \texttt{website\_list.json}. The script makes five
+HTTP requests to each site and records two
+key metrics for each attempt:
 
 \begin{itemize}
   \item \textbf{Page load time (in seconds):}
@@ -48,22 +49,22 @@ to each site and records two key metrics for each attempt:
     webpage including all its resources.
 \end{itemize}
 
-These raw measurements were then dumped into
-\texttt{website\_load\_data.json}. This data was then piped into
-the script \texttt{make\_avg\_csv.py} which calculates
-the average of five entries of each metric
-for each website and then
-writes the result into \texttt{averaged\_data.csv}
-in a structured manner. The scripts and datasets used
+These raw measurements were stored in
+\texttt{website\_load\_data.json}.
+This current data was then processed by the script
+\texttt{make\_avg\_csv.py},
+which computes the average of the five measurements
+of each metric for every website and writes
+the summarized results into
+\texttt{averaged\_data.csv} in a structured format.
+The scripts and datasets used
 in this project are available in the following
 \href{
   https://github.com/Bubu-Droid/mini-projects-repo/tree/main/lin-reg-sem-1
 }{GitHub repository}.
 % TODO: add the appendix data given part here
 
-\subsection{Summary Statistics}
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{||c | c | c | c | c | c||}
 \hline
@@ -81,13 +82,13 @@ in this project are available in the following
 
 \section{Model Formulation}
 
-In order to have a better understanding at how the
+In order to have a better understanding of how the
 metrics might be related to each other, we make a
 scatter plot by plotting
 \textbf{load\_time\_avg} along $Y$-axis
 and \textbf{page\_size\_avg} along $X$-axis.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{minipage}{0.45\textwidth}
     \centering
@@ -104,18 +105,18 @@ and \textbf{page\_size\_avg} along $X$-axis.
 \end{figure}
 
 The relationship between the metrics is not very clear in
-\cref{fig:default-biv}. However, after applying a logarithmic
-transformation to both, the condition improves substantially
-as there's a vivid linear relationship between them as
-seen in \cref{fig:log-biv}.
+\cref{fig:default-biv}. However, after applying a
+logarithmic transformation to both variables,
+the relationship becomes substantially more linear,
+as shown in \cref{fig:log-biv}.
 
-Thus considering a power-law model of the form
+Thus, considering a power-law model of the form
 \[
   \text{Load Time}
   = e^{\alpha}\cdot
   \text{Page Size}^{\beta}\cdot e^{\varepsilon}
 \]
-would be suitable as this suggests
+would be suitable, as this suggests
 \[
   \log(\text{Load Time}) = \alpha
   + \beta\log(\text{Page Size}) + \varepsilon,
@@ -140,7 +141,7 @@ Fitting the linear regression model
 \]
 to the data yields the following estimates:
 
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \begin{tabular}{||c c c||}
 
@@ -161,12 +162,12 @@ to the data yields the following estimates:
 
 The fitted equation is therefore approximately
 \[
-  \log(\hat{Y}) = -2.371 + 0.478\,\log(x),
+  \widehat{\log(Y)} = -2.371 + 0.478\log(x),
 \]
 with coefficient of determination
 $R^2 = 0.758$.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{||c | c | c | c | c | c||}
 \hline
@@ -185,25 +186,177 @@ $R^2 = 0.758$.
 So, using values from \cref{table:summary-stat-log}
 and \cref{table:estimates}, we get,
 \[
-  r = \frac{S_{x, Y}}{S_xS_y}
-  = \hat{\beta}\cdot \frac{S_x}{S_Y}
+  r = \frac{S_{\log(x), \log(Y)}}{S_{\log(x)}S_{\log(Y)}}
+  = \hat{\beta}\cdot \frac{S_{\log(x)}}{S_{\log(Y)}}
   = 0.478 \times \frac{1.531}{0.84}
   = 0.87.
 \]
 
-Therefore the sample correlation $r = 0.87$ indicates
-there is a strong positive linear association between the two
+Therefore, the sample correlation $r = 0.87$ indicates
+a strong positive linear association between the two
 variables.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth,keepaspectratio]{./r-code/model-fit.pdf}
+  \includegraphics[width=0.5\textwidth,keepaspectratio]{./r-code/model-fit.pdf}
   \caption{Scatter plot of $\log(\text{Page Size})$ vs. $\log(\text{Load Time})$ with fitted regression line}
 \end{figure}
 
 
 \section{Interval Estimates}
 
+We now check how the residuals,
+$\hat{\varepsilon}_{i} = \log(y_{i}) - \widehat{\log(y_{i})}$,
+behave where $\log(y_{i})$ represents a realized value of
+$\log(\text{Load Time})$ and $\log(\hat{y_{i}})$ is the fitted
+value corresponding to that observation.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/residual-plot.pdf}
+    \caption{Plot of residuals versus fitted values}
+    \label{fig:resi-plot}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/residual-hist.pdf}
+    \caption{Histogram of residuals for the log--log regression model}
+    \label{fig:resi-hist}
+  \end{minipage}
+\end{figure}
+
+From \cref{fig:resi-hist}, it can be deduced
+that the distribution of residuals roughly follows
+a normal distribution with mean $0$.
+It is therefore reasonable to assume that
+$\varepsilon \sim N(0, \sigma^2)$.
+This helps us to estimate confidence and
+prediction intervals using quantiles of
+$t$-distribution.
+
+The formulas for the confidence intervals are as follows:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c||}
+
+\hline
+Parameter & Confidence Interval \\ [0.5ex]
+\hline\hline
+  $\alpha$ 
+  & $\hat{\alpha} \pm
+  t_{\gamma/2}(n-2)s\sqrt{
+    \frac{1}{n} + \frac{\overline{\log(x)}^2}{S_{\log(x)\log(x)}}}$ \\
+\hline
+  $\beta$ & $\hat{\beta} \pm
+  t_{\gamma/2}(n-2) \frac{s}{\sqrt{S_{\log(x)\log(x)}}}$ \\
+\hline
+
+\end{tabular}
+\caption{$100(1-\gamma)\%$ confidence intervals for model parameters}
+\end{table}
+
+We now list the formulas for the $100(1-\gamma)\%$
+confidence and prediction intervals for
+$\mathbb E[\log(Y)]$ and $\log(Y)$, respectively,
+given a new value of $X = x$.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c||}
+
+\hline
+Quantity & Confidence Interval \\ [0.5ex]
+\hline\hline
+  $\mathbb E[\log(Y)]$ 
+  & $(\hat{\alpha}
+  + \hat{\beta}\log(x)) \pm t_{\gamma/2}(n-2)s
+  \sqrt{\frac{1}{n}+
+  \frac{(\log(x)-\overline{\log(x)})^2}{S_{\log(x)\log(x)}}}$ \\
+\hline
+
+\end{tabular}
+\caption{$100(1-\gamma)\%$ confidence interval for
+  $E[\log(Y)]$ given a new value of $X=x$}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c||}
+
+\hline
+Quantity & Prediction Interval \\ [0.5ex]
+\hline\hline
+  $\log(Y)$ 
+  & $(\hat{\alpha} + \hat{\beta}\log(x)) \pm
+  t_{\gamma/2}(n-2)s\sqrt{1+\frac{1}{n}
+  +\frac{(\log(x)-\overline{\log(x)})^2}{S_{\log(x)\log(x)}}}$ \\
+\hline
+
+\end{tabular}
+\caption{$100(1-\gamma)\%$ prediction interval for
+  $\log(Y)$ given a new value of $X=x$}
+\end{table}
+
+Substituting dataset values into these formulas
+gives the realized upper and lower bounds of the $95\%$
+confidence and prediction intervals.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c | c||}
+
+\hline
+Parameter & Lower Limit & Upper Limit \\ [0.5ex]
+\hline\hline
+$\alpha$ & -2.906478 & -1.836269 \\
+\hline
+$\beta$ & 0.4179795 & 0.5381199 \\
+\hline
+
+\end{tabular}
+\caption{$95\%$ confidence intervals for the regression parameters}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c||}
+
+\hline
+Quantity & Confidence Interval \\ [0.5ex]
+\hline\hline
+  $\mathbb E[\log(Y)]$
+  & $(-2.3714 + 0.4780 \cdot \log(x))
+  \pm 0.8279 \cdot \sqrt{0.0122
+  + \frac{(\log(x)-8.7770)^2}{189.9567}}$ \\
+\hline
+
+\end{tabular}
+  \caption{$95\%$ confidence interval for $\mathbb E[\log(Y)]$
+  given a new value of $X=x$}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c||}
+
+\hline
+Quantity & Prediction Interval \\ [0.5ex]
+\hline\hline
+  $\log(Y)$ & $(-2.3714 + 0.4780 \cdot \log(x))
+  \pm 0.8279 \cdot \sqrt{1.0122
+  + \frac{(\log(x)-8.7770)^2}{189.9567}}$ \\
+\hline
+
+\end{tabular}
+  \caption{$95\%$ prediction interval for $\log(Y)$
+  given a new value of $X=x$}
+\end{table}
+
+
+With this, we conclude our interval estimate analysis.
 
 
 \end{document}
