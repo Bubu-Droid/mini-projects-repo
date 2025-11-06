@@ -21,11 +21,21 @@ You can write multiple paragraphs here. The formatting will handle the spacing a
 % Third page - start your project here
 \section{Introduction}
 Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
+Your content starts here. This section will introduce your statistical analysis project and its significance.
 
 \section{Data Description}
 
 The dataset used in this project was generated using
-an automated script which reads the list of websites from
+an automated script which reads the list of websites,
+containing $82$ entries, from
 \texttt{website\_list.json} and makes five HTTP requests
 to each site and records two key metrics for each attempt:
 
@@ -39,10 +49,161 @@ to each site and records two key metrics for each attempt:
 \end{itemize}
 
 These raw measurements were then dumped into
-\texttt{website\_load\_data.json} which was then piped into
+\texttt{website\_load\_data.json}. This data was then piped into
 the script \texttt{make\_avg\_csv.py} which calculates
-the average of five entries for each website and then
-writes the data into \texttt{averaged\_data.csv}
-in a structured manner.
+the average of five entries of each metric
+for each website and then
+writes the result into \texttt{averaged\_data.csv}
+in a structured manner. The scripts and datasets used
+in this project are available in the following
+\href{
+  https://github.com/Bubu-Droid/mini-projects-repo/tree/main/lin-reg-sem-1
+}{GitHub repository}.
+% TODO: add the appendix data given part here
+
+\subsection{Summary Statistics}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{||c | c | c | c | c | c||}
+\hline
+  \textbf{Variable} & \textbf{Mean} & \textbf{Median} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+\hline\hline
+  \textbf{Page Size (kb)} & 15427.26 & 6939.39 & 59.6 & 104757.7 & 22067.91 \\
+\hline
+  \textbf{Load Time (s)} & 8.593405 & 5.755 & 0.3858 & 43.2654 & 7.929519 \\
+\hline
+\end{tabular}
+\caption{Summary statistics of average page size and load time}
+\end{table}
+
+\newpage
+
+\section{Model Formulation}
+
+In order to have a better understanding at how the
+metrics might be related to each other, we make a
+scatter plot by plotting
+\textbf{load\_time\_avg} along $Y$-axis
+and \textbf{page\_size\_avg} along $X$-axis.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/default-biv-plot.pdf}
+    \caption{Load Time vs. Page Size}
+    \label{fig:default-biv}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-biv-plot.pdf}
+    \caption{$\log(\text{Load Time})$ vs. $\log(\text{Page Size})$}
+    \label{fig:log-biv}
+  \end{minipage}
+\end{figure}
+
+The relationship between the metrics is not very clear in
+\cref{fig:default-biv}. However, after applying a logarithmic
+transformation to both, the condition improves substantially
+as there's a vivid linear relationship between them as
+seen in \cref{fig:log-biv}.
+
+Thus considering a power-law model of the form
+\[
+  \text{Load Time}
+  = e^{\alpha}\cdot
+  \text{Page Size}^{\beta}\cdot e^{\varepsilon}
+\]
+would be suitable as this suggests
+\[
+  \log(\text{Load Time}) = \alpha
+  + \beta\log(\text{Page Size}) + \varepsilon,
+\]
+that is, a linear relationship between
+$\log(\text{Load Time})$ and $\log(\text{Page Size})$.
+
+Let $X$ denote the average page size
+(in kilobytes) and $Y$ denote the average
+page load time (in seconds) for each website.
+
+We will now estimate the parameters
+$\alpha$ and $\beta$ using
+the method of least squares on the
+log-transformed data.
+
+\section{Regression Analysis}
+
+Fitting the linear regression model
+\[
+  \log(Y) = \alpha + \beta \log(x) + \varepsilon
+\]
+to the data yields the following estimates:
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{||c c c||}
+
+  \hline
+
+    $\hat{\alpha}$ & $\hat{\beta}$ & $R^2$ \\ [0.5ex]
+
+  \hline\hline
+
+   -2.371373 & 0.4780497 & 0.7581765 \\
+
+  \hline
+
+  \end{tabular}
+  \caption{Estimated Parameters of the Model}
+  \label{table:estimates}
+\end{table}
+
+The fitted equation is therefore approximately
+\[
+  \log(\hat{Y}) = -2.371 + 0.478\,\log(x),
+\]
+with coefficient of determination
+$R^2 = 0.758$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{||c | c | c | c | c | c||}
+\hline
+  \textbf{Variable} & \textbf{Mean} & \textbf{Median} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+\hline\hline
+  $\log(\text{Page Size})$ & 8.776999 & 8.844928 & 4.087656 & 11.55941 & 1.531387 \\
+\hline
+  $\log(\text{Load Time})$ & 1.824468 & 1.750042 & -0.9524362 & 3.767353 & 0.8407613 \\
+\hline
+\end{tabular}
+  \caption{Summary statistics of
+  $\log(\text{Page Size})$ and $\log(\text{Load Time})$}
+  \label{table:summary-stat-log}
+\end{table}
+
+So, using values from \cref{table:summary-stat-log}
+and \cref{table:estimates}, we get,
+\[
+  r = \frac{S_{x, Y}}{S_xS_y}
+  = \hat{\beta}\cdot \frac{S_x}{S_Y}
+  = 0.478 \times \frac{1.531}{0.84}
+  = 0.87.
+\]
+
+Therefore the sample correlation $r = 0.87$ indicates
+there is a strong positive linear association between the two
+variables.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth,keepaspectratio]{./r-code/model-fit.pdf}
+  \caption{Scatter plot of $\log(\text{Page Size})$ vs. $\log(\text{Load Time})$ with fitted regression line}
+\end{figure}
+
+
+\section{Interval Estimates}
+
+
 
 \end{document}

@@ -4,13 +4,31 @@
 
 % Required packages
 \RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{float}
 \RequirePackage{titlesec}
 \RequirePackage{titling}
 \RequirePackage{tocloft}
 \RequirePackage{abstract}
 \RequirePackage{setspace}
 \RequirePackage{lmodern}
-\RequirePackage[hidelinks]{hyperref} % For clickable TOC
+\RequirePackage[svgnames,dvipsnames]{xcolor}
+\RequirePackage{amsmath}
+\RequirePackage{hyperref}
+\RequirePackage[capitalize,nameinlink]{cleveref}
+
+\hypersetup{%
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={Statistics Assignment},
+    pdfcreator={LaTeX with statproj.sty},
+    colorlinks=true,
+    urlcolor=RoyalBlue,
+    % linkcolor=RoyalBlue,
+    citecolor=ForestGreen
+    % linktoc=all
+}
+
 
 % Page layout
 \geometry{a4paper, margin=1in}
@@ -88,17 +106,5 @@
 % Better itemize environment
 \RequirePackage{enumitem}
 \setlist{itemsep=2pt, topsep=6pt}
-
-% Setup hyperref for better PDF experience
-\AtBeginDocument{%
-    \hypersetup{%
-        pdftitle={\@title},
-        pdfauthor={\@author},
-        pdfsubject={Statistics Assignment},
-        pdfcreator={LaTeX with statproj.sty},
-        colorlinks=false,
-        linktoc=all
-    }
-}
 
 \endinput
