@@ -29,18 +29,3 @@ cat("Median:", median(log(data$load_time_avg)), "\n")
 cat("Minimum:", min(log(data$load_time_avg)), "\n")
 cat("Maximum:", max(log(data$load_time_avg)), "\n")
 cat("Standard deviation:", sd(log(data$load_time_avg)), "\n\n")
-
-cat("Confidence Interval for alpha and beta:\n\n")
-ci_results <- confint(model)
-ci_alpha_lower <- ci_results[1, 1]
-ci_alpha_upper <- ci_results[1, 2]
-ci_beta_lower <- ci_results[2, 1]
-ci_beta_upper <- ci_results[2, 2]
-cat("Intercept (alpha) CI:\n")
-cat("  Lower Bound:", ci_alpha_lower, "\n")
-cat("  Upper Bound:", ci_alpha_upper, "\n\n")
-cat("Slope (beta) CI:\n")
-cat("  Lower Bound:", ci_beta_lower, "\n")
-cat("  Upper Bound:", ci_beta_upper, "\n")
-cat("\n--- Full CI Table ---\n")
-print(ci_results)

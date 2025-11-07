@@ -1,3 +1,14 @@
+% █▀▀ █▀█ █▄░█ █▀▀ █▀█ ▄▀█ ▀█▀ █░█ █░░ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀ █
+% █▄▄ █▄█ █░▀█ █▄█ █▀▄ █▀█ ░█░ █▄█ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█ ▄
+%
+%
+%
+% You've found an easter egg. Here's your gift:
+% https://youtu.be/hB7CDrVnNCs?si=3STkz4Iqvh3KEZEJ
+%
+%
+%
+%
 \documentclass[12pt]{article}
 \usepackage{statproj}
 
@@ -7,62 +18,101 @@
 
 \begin{document}
 
-% First page with title, name, date, and abstract
-\maketitlepage{\thetitle}{\theauthor}{\thedate}{
-% Your abstract content will go here
-This is where you'll write your abstract content later. You can replace this text with your actual abstract when you're ready. The abstract should provide a brief overview of your statistics assignment, including the main objectives, methods, and key findings.
+% \doublespacing % Oh hell naw, this looks hideous
 
-You can write multiple paragraphs here. The formatting will handle the spacing and make it look professional and well-organized for your statistics assignment.
+\maketitlepage{\thetitle}{\theauthor}{\thedate}{
+This study investigates the relationship between website
+page size and load time using data collected from the
+official websites of Indian colleges. For each website,
+multiple measurements of page size and load time were taken
+under identical network conditions to minimize random
+variation due to bandwidth fluctuations. Exploratory
+analysis revealed a positive but non-linear association
+between the two variables. After applying logarithmic
+transformations to both, the relationship became
+approximately linear, motivating the use of a power-law
+(log--log) regression model.
+
+The fitted model
+explained about $75.8\%$ of the variability in load time and
+showed a strong positive correlation ($r = 0.87$).
+Residual analysis indicated approximate normality,
+supporting the validity of inference based on
+$t$-distribution. When tested on new websites, all observed
+values fell within their respective $95\%$ prediction
+intervals, confirming the model's reliability within its
+domain. The findings highlight that while page size is a key
+determinant of load time for minimalistic websites, other
+factors such as caching, server configuration, and use of
+CDNs play a major role in more complex, resource-intensive
+sites.
 }
 
-% Second page with table of contents (clickable links and improved spacing)
-\makecontents
 
-% Third page - start your project here
 \section{Introduction}
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
-Your content starts here. This section will introduce your statistical analysis project and its significance.
+In the modern web ecosystem, the loading speed of a website
+plays a crucial role in determining user experience and
+overall accessibility. Websites that take longer to load
+often experience higher bounce rates and lower engagement,
+making load time an important performance metric. Among the
+various factors influencing how fast a webpage loads, the
+total size of the page and its associated resources is one
+of the most significant.
+
+The objective of this study is to examine the relationship
+between the size of a webpage and its corresponding
+load time. To achieve this, data were collected from
+the official websites of various Indian colleges. The data
+include multiple load-time measurements for each site,
+allowing us to eliminate the noise due to network
+fluctuations and derive
+a stable estimate of load duration and total
+page size by considering the average.
+
+An initial visual inspection of the raw data suggested a
+positive but non-linear association between the two
+variables. After applying logarithmic transformations to
+both metrics, the relationship became approximately linear,
+motivating the use of a log--log regression model.
+The subsequent
+analysis explores this relationship in detail, estimates the
+model parameters, and assesses the fit using confidence and
+prediction intervals.
 
 \section{Data Description}
 
 The dataset used in this project was generated
 using an automated Python script that reads a
-list of websites containing 82 entries
+list of 82 websites containing
 from \texttt{website\_list.json}. The script makes five
 HTTP requests to each site and records two
 key metrics for each attempt:
 
 \begin{itemize}
-  \item \textbf{Page load time (in seconds):}
+  \item \textbf{Page Load Time (in seconds):}
     The total time required
     for the page to fully load under a web-browser instance.
-  \item \textbf{Page size (in kilobytes):}
+  \item \textbf{Page Size (in kilobytes):}
     The total size of loaded
-    webpage including all its resources.
+    webpage including, all its resources.
 \end{itemize}
 
 These raw measurements were stored in
 \texttt{website\_load\_data.json}.
-This current data was then processed by the script
+This data was then processed by the script
 \texttt{make\_avg\_csv.py},
 which computes the average of the five measurements
 of each metric for every website and writes
-the summarized results into
+the summarized results to
 \texttt{averaged\_data.csv} in a structured format.
+Considering the average helps us to
+eliminate the noises created
+due to network fluctuations.
 The scripts and datasets used
 in this project are available in the following
 \href{
   https://github.com/Bubu-Droid/mini-projects-repo/tree/main/lin-reg-sem-1
 }{GitHub repository}.
-% TODO: add the appendix data given part here
 
 \begin{table}[H]
 \centering
@@ -75,31 +125,30 @@ in this project are available in the following
   \textbf{Load Time (s)} & 8.593405 & 5.755 & 0.3858 & 43.2654 & 7.929519 \\
 \hline
 \end{tabular}
-\caption{Summary statistics of average page size and load time}
+\caption{Summary statistics of average Page Size and Load Time.}
 \end{table}
 
-\newpage
 
 \section{Model Formulation}
 
-In order to have a better understanding of how the
-metrics might be related to each other, we make a
+To gain a better understanding of how the
+metrics might be related, we make a
 scatter plot by plotting
-\textbf{load\_time\_avg} along $Y$-axis
-and \textbf{page\_size\_avg} along $X$-axis.
+\textbf{load\_time\_avg} along the $Y$-axis
+and \textbf{page\_size\_avg} along the $X$-axis.
 
 \begin{figure}[H]
   \centering
   \begin{minipage}{0.45\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/default-biv-plot.pdf}
-    \caption{Load Time vs. Page Size}
+    \caption{Load Time vs. Page Size.}
     \label{fig:default-biv}
   \end{minipage}\hfill
   \begin{minipage}{0.45\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-biv-plot.pdf}
-    \caption{$\log(\text{Load Time})$ vs. $\log(\text{Page Size})$}
+    \caption{$\log(\text{Load Time})$ vs. $\log(\text{Page Size})$.}
     \label{fig:log-biv}
   \end{minipage}
 \end{figure}
@@ -124,12 +173,12 @@ would be suitable, as this suggests
 that is, a linear relationship between
 $\log(\text{Load Time})$ and $\log(\text{Page Size})$.
 
-Let $X$ denote the average page size
+Let $X$ denote the average Page Size
 (in kilobytes) and $Y$ denote the average
-page load time (in seconds) for each website.
+page Load Time (in seconds) for each website.
 
-We will now estimate the parameters
-$\alpha$ and $\beta$ using
+We now estimate the parameters
+$\hat{\alpha}$ and $\hat{\beta}$ using
 the method of least squares on the
 log-transformed data.
 
@@ -156,11 +205,11 @@ to the data yields the following estimates:
   \hline
 
   \end{tabular}
-  \caption{Estimated Parameters of the Model}
+  \caption{Estimated parameters of the model.}
   \label{table:estimates}
 \end{table}
 
-The fitted equation is therefore approximately
+The fitted equation is, therefore, approximately
 \[
   \widehat{\log(Y)} = -2.371 + 0.478\log(x),
 \]
@@ -179,7 +228,7 @@ $R^2 = 0.758$.
 \hline
 \end{tabular}
   \caption{Summary statistics of
-  $\log(\text{Page Size})$ and $\log(\text{Load Time})$}
+  $\log(\text{Page Size})$ and $\log(\text{Load Time})$.}
   \label{table:summary-stat-log}
 \end{table}
 
@@ -199,16 +248,18 @@ variables.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth,keepaspectratio]{./r-code/model-fit.pdf}
-  \caption{Scatter plot of $\log(\text{Page Size})$ vs. $\log(\text{Load Time})$ with fitted regression line}
+  \caption{Scatter plot of $\log(\text{Page Size})$
+  vs. $\log(\text{Load Time})$ with fitted regression line.}
 \end{figure}
 
 
 \section{Interval Estimates}
 
-We now check how the residuals,
-$\hat{\varepsilon}_{i} = \log(y_{i}) - \widehat{\log(y_{i})}$,
-behave where $\log(y_{i})$ represents a realized value of
-$\log(\text{Load Time})$ and $\log(\hat{y_{i}})$ is the fitted
+We now check how the residuals
+$\hat{\varepsilon}_{i} = \log(y_{i}) - \widehat{\log(y_{i})}$
+behave, where $\log(y_{i})$ represents a realized value of
+$\log(\text{Load Time})$ and $\widehat{\log(y_{i})}$
+is the fitted
 value corresponding to that observation.
 
 \begin{figure}[H]
@@ -216,13 +267,13 @@ value corresponding to that observation.
   \begin{minipage}{0.45\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/residual-plot.pdf}
-    \caption{Plot of residuals versus fitted values}
-    \label{fig:resi-plot}
+    \caption{Plot of residuals vs. Observation index.}
   \end{minipage}\hfill
   \begin{minipage}{0.45\textwidth}
     \centering
     \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/residual-hist.pdf}
-    \caption{Histogram of residuals for the log--log regression model}
+    \caption{Histogram of residuals for the
+    log--log regression model.}
     \label{fig:resi-hist}
   \end{minipage}
 \end{figure}
@@ -243,7 +294,7 @@ The formulas for the confidence intervals are as follows:
 \begin{tabular}{||c | c||}
 
 \hline
-Parameter & Confidence Interval \\ [0.5ex]
+\textbf{Parameter} & \textbf{Confidence Interval} \\ [0.5ex]
 \hline\hline
   $\alpha$ 
   & $\hat{\alpha} \pm
@@ -255,7 +306,8 @@ Parameter & Confidence Interval \\ [0.5ex]
 \hline
 
 \end{tabular}
-\caption{$100(1-\gamma)\%$ confidence intervals for model parameters}
+\caption{$100(1-\gamma)\%$ confidence intervals
+  for model parameters.}
 \end{table}
 
 We now list the formulas for the $100(1-\gamma)\%$
@@ -268,7 +320,7 @@ given a new value of $X = x$.
 \begin{tabular}{||c | c||}
 
 \hline
-Quantity & Confidence Interval \\ [0.5ex]
+\textbf{Quantity} & \textbf{Confidence Interval} \\ [0.5ex]
 \hline\hline
   $\mathbb E[\log(Y)]$ 
   & $(\hat{\alpha}
@@ -279,7 +331,7 @@ Quantity & Confidence Interval \\ [0.5ex]
 
 \end{tabular}
 \caption{$100(1-\gamma)\%$ confidence interval for
-  $E[\log(Y)]$ given a new value of $X=x$}
+  $E[\log(Y)]$ given a new value of $X=x$.}
 \end{table}
 
 \begin{table}[H]
@@ -287,7 +339,7 @@ Quantity & Confidence Interval \\ [0.5ex]
 \begin{tabular}{||c | c||}
 
 \hline
-Quantity & Prediction Interval \\ [0.5ex]
+\textbf{Quantity} & \textbf{Prediction Interval} \\ [0.5ex]
 \hline\hline
   $\log(Y)$ 
   & $(\hat{\alpha} + \hat{\beta}\log(x)) \pm
@@ -297,7 +349,7 @@ Quantity & Prediction Interval \\ [0.5ex]
 
 \end{tabular}
 \caption{$100(1-\gamma)\%$ prediction interval for
-  $\log(Y)$ given a new value of $X=x$}
+  $\log(Y)$ given a new value of $X=x$.}
 \end{table}
 
 Substituting dataset values into these formulas
@@ -309,7 +361,9 @@ confidence and prediction intervals.
 \begin{tabular}{||c | c | c||}
 
 \hline
-Parameter & Lower Limit & Upper Limit \\ [0.5ex]
+  \textbf{Parameter}
+  & \textbf{Lower Limit}
+  & \textbf{Upper Limit} \\ [0.5ex]
 \hline\hline
 $\alpha$ & -2.906478 & -1.836269 \\
 \hline
@@ -317,7 +371,8 @@ $\beta$ & 0.4179795 & 0.5381199 \\
 \hline
 
 \end{tabular}
-\caption{$95\%$ confidence intervals for the regression parameters}
+\caption{$95\%$ confidence intervals for the
+  regression parameters.}
 \end{table}
 
 \begin{table}[H]
@@ -325,7 +380,7 @@ $\beta$ & 0.4179795 & 0.5381199 \\
 \begin{tabular}{||c | c||}
 
 \hline
-Quantity & Confidence Interval \\ [0.5ex]
+\textbf{Quantity} & \textbf{Confidence Interval} \\ [0.5ex]
 \hline\hline
   $\mathbb E[\log(Y)]$
   & $(-2.3714 + 0.4780 \cdot \log(x))
@@ -335,7 +390,7 @@ Quantity & Confidence Interval \\ [0.5ex]
 
 \end{tabular}
   \caption{$95\%$ confidence interval for $\mathbb E[\log(Y)]$
-  given a new value of $X=x$}
+  given a new value of $X=x$.}
 \end{table}
 
 \begin{table}[H]
@@ -343,7 +398,7 @@ Quantity & Confidence Interval \\ [0.5ex]
 \begin{tabular}{||c | c||}
 
 \hline
-Quantity & Prediction Interval \\ [0.5ex]
+  \textbf{Quantity} & \textbf{Prediction Interval} \\ [0.5ex]
 \hline\hline
   $\log(Y)$ & $(-2.3714 + 0.4780 \cdot \log(x))
   \pm 0.8279 \cdot \sqrt{1.0122
@@ -352,11 +407,291 @@ Quantity & Prediction Interval \\ [0.5ex]
 
 \end{tabular}
   \caption{$95\%$ prediction interval for $\log(Y)$
-  given a new value of $X=x$}
+  given a new value of $X=x$.}
+\end{table}
+
+We now put the prediction interval to test using
+a few new websites as test cases.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c | c | c | c||}
+
+\hline
+  \textbf{Website}
+  & \textbf{Prediction Interval for $\log(Y)$}
+  & \textbf{Actual $\log(y)$}
+  & \textbf{Inside interval?} \\ [0.5ex]
+\hline\hline
+  Amazon & $(0.1462, 1.8253)$ & $0.432$ & Yes \\
+\hline
+  Project Euler & $(-1.0737, 0.6683)$ & $0.377$ & Yes \\
+\hline
+  Suckless & $(-0.9869, 0.7490)$ & $0.586$ & Yes \\
+\hline
+
+\end{tabular}
+\caption{Comparing bounds of prediction interval
+  with actual value of $\log(\text{Load Time})$.}
 \end{table}
 
 
-With this, we conclude our interval estimate analysis.
+\section{Conclusion}
 
+The analysis demonstrates a strong positive relationship
+between average web page size and average load time.
+After applying logarithmic transformations to both
+variables, the fitted model
+\[
+  \widehat{\log(Y)} = -2.371 + 0.478 \log(x)
+\]
+explained about $75.8\%$ of the variation in the
+log-transformed load time. The estimated correlation
+coefficient of $r = 0.87$ further confirms a strong linear
+association between these variables.
+
+Residual analysis showed that the error terms were
+approximately normally distributed, validating the use of
+$t$-based confidence and prediction intervals. When tested
+on new websites, all observed $\log(\text{Load Time})$
+values fell within their respective $95\%$ prediction
+intervals, indicating that the model performs reliably
+within its observed domain.
+
+It should be noted that all data were collected from
+websites of Indian colleges, which are generally
+minimalistic and have relatively small page sizes compared
+to large commercial or media websites. Furthermore, several
+external factors influencing page load time, such as, the use
+of Content Delivery Networks (CDNs), server response time,
+caching mechanisms, client-side rendering, and network
+routing were not modeled explicitly. However, since all
+measurements were made using the same network and under
+similar conditions, much of the variation due to network
+speed was effectively smoothed out. As a result, the
+regression primarily captures the structural relationship
+between page size and load time for lightweight, static
+websites. Nevertheless, the model may not generalize well
+to resource-intensive, dynamically rendered websites that
+depend heavily on JavaScript execution, third-party assets,
+or geographically distributed servers.
+
+\appendix
+\section{Appendix}
+
+\subsection{Dataset}
+
+\begin{longtable}{||p{6cm} | c | c||}
+\caption{Raw Average Data for Websites.} \\
+\hline
+\textbf{Website} & \textbf{Load Time (s)} & \textbf{Page Size (KB)} \\ [0.5ex]
+\hline\hline
+\endfirsthead
+
+\multicolumn{3}{c}
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\textbf{Website} & \textbf{Load Time (s)} & \textbf{Page Size (KB)} \\ [0.5ex]
+\hline\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Indian Statistical Institute, Kolkata & 10.3276 & 7066.44 \\
+\hline
+Indian Statistical Institute, Delhi & 0.3858 & 59.6 \\
+\hline
+Indian Statistical Institute, Bangalore & 1.0156 & 76.0 \\
+\hline
+Indian Statistical Institute, Chennai & 1.2878 & 1940.2 \\
+\hline
+Indian Statistical Institute, Pune & 1.1098 & 2093.1 \\
+\hline
+Indian Statistical Institute, Tezpur & 7.584 & 14778.2 \\
+\hline
+Chennai Mathematical Institute & 1.2328 & 62.14 \\
+\hline
+Tata Institute of Fundamental Research & 9.2808 & 4573.1 \\
+\hline
+TIFR Centre for Applicable Mathematics & 3.6046 & 333.84 \\
+\hline
+TIFR Centre for Interdisciplinary Sciences & 8.1344 & 21874.06 \\
+\hline
+International Centre for Theoretical Sciences & 11.5872 & 26943.2 \\
+\hline
+Harish-Chandra Research Institute & 4.4566 & 4541.56 \\
+\hline
+Institute of Mathematical Sciences & 3.5582 & 1548.02 \\
+\hline
+Raman Research Institute & 2.4424 & 722.84 \\
+\hline
+Physical Research Laboratory & 9.3362 & 27668.32 \\
+\hline
+Inter-University Centre for Astronomy and Astrophysics & 5.4912 & 1449.8 \\
+\hline
+S.N. Bose National Centre for Basic Sciences & 4.975 & 5124.2 \\
+\hline
+Institute of Physics, Bhubaneswar & 7.7596 & 22306.3 \\
+\hline
+Indian Institute of Science & 9.3522 & 5671.52 \\
+\hline
+IISER Pune & 2.9018 & 2656.14 \\
+\hline
+IISER Kolkata & 4.8636 & 5098.6 \\
+\hline
+IISER Bhopal & 20.3772 & 53687.0 \\
+\hline
+IISER Tirupati & 5.0602 & 2817.76 \\
+\hline
+IISER Berhampur & 15.249 & 33293.1 \\
+\hline
+IIT Bombay & 1.2544 & 571.04 \\
+\hline
+IIT Delhi & 5.0844 & 12550.1 \\
+\hline
+IIT Madras & 3.6296 & 6350.46 \\
+\hline
+IIT Kanpur & 7.7106 & 9316.92 \\
+\hline
+IIT Kharagpur & 6.9596 & 6664.0 \\
+\hline
+IIT Guwahati & 11.506 & 31890.84 \\
+\hline
+IIT Roorkee & 28.965 & 95601.9 \\
+\hline
+IIT Hyderabad & 5.4708 & 14873.24 \\
+\hline
+IIT Indore & 4.6852 & 4374.22 \\
+\hline
+IIT BHU & 20.5672 & 12158.16 \\
+\hline
+IIT Gandhinagar & 5.7974 & 5024.42 \\
+\hline
+IIT Patna & 4.9366 & 2779.06 \\
+\hline
+IIT Mandi & 17.538 & 9794.48 \\
+\hline
+IIT Bhubaneswar & 42.9686 & 89554.08 \\
+\hline
+IIT Tirupati & 4.645 & 1548.1 \\
+\hline
+IIT Palakkad & 5.7126 & 2446.7 \\
+\hline
+IIT Dhanbad (ISM) & 5.466 & 8630.1 \\
+\hline
+IIT Dharwad & 8.859 & 8012.36 \\
+\hline
+NIT Trichy & 5.1724 & 5413.0 \\
+\hline
+NIT Surathkal & 5.8766 & 3992.5 \\
+\hline
+NIT Calicut & 21.2912 & 70576.94 \\
+\hline
+NIT Durgapur & 3.9468 & 7002.16 \\
+\hline
+NIT Silchar & 6.43 & 11423.16 \\
+\hline
+NIT Meghalaya & 14.49 & 33129.52 \\
+\hline
+NIT Agartala & 14.2918 & 13669.86 \\
+\hline
+NIT Raipur & 4.2412 & 4623.38 \\
+\hline
+NIT Kurukshetra & 4.9326 & 2517.9 \\
+\hline
+NIT Srinagar & 7.5526 & 18134.58 \\
+\hline
+NIT Arunachal Pradesh & 4.705 & 3800.4 \\
+\hline
+NIT Nagaland & 6.5974 & 8995.5 \\
+\hline
+NIT Sikkim & 6.4048 & 17421.0 \\
+\hline
+NIT Goa & 16.4818 & 44634.9 \\
+\hline
+NIT Puducherry & 11.6826 & 31309.92 \\
+\hline
+Delhi University & 5.9378 & 7839.2 \\
+\hline
+BITS Pilani & 3.8468 & 4183.3 \\
+\hline
+Jawaharlal Nehru University & 2.7822 & 6876.62 \\
+\hline
+Banaras Hindu University & 9.7682 & 26132.32 \\
+\hline
+University of Calcutta & 15.5968 & 9403.62 \\
+\hline
+Indian Institute of Engineering Science and Technology, Shibpur & 11.9522 & 31924.2 \\
+\hline
+Anna University & 8.8914 & 5229.74 \\
+\hline
+Savitribai Phule Pune University & 3.6592 & 6562.66 \\
+\hline
+Aligarh Muslim University & 5.2848 & 3853.84 \\
+\hline
+University of Madras & 43.2654 & 104757.7 \\
+\hline
+Panjab University & 5.1862 & 9035.3 \\
+\hline
+Central University of Rajasthan & 5.1708 & 1740.1 \\
+\hline
+Maulana Azad National Institute of Technology (MANIT) & 17.672 & 28977.98 \\
+\hline
+Visvesvaraya National Institute of Technology (VNIT) & 7.2212 & 11702.72 \\
+\hline
+Goa University & 4.027 & 3244.68 \\
+\hline
+Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) & 4.8342 & 13388.84 \\
+\hline
+Saha Institute of Nuclear Physics (SINP) & 3.6876 & 1473.14 \\
+\hline
+National Centre for Biological Sciences (NCBS) & 8.8122 & 18537.66 \\
+\hline
+Institute of Plasma Research (IPR) & 12.1688 & 14067.02 \\
+\hline
+Bhabha Atomic Research Centre (BARC) Training School & 5.6862 & 12703.36 \\
+\hline
+Institute of Genomics and Integrative Biology (IGIB) & 2.5644 & 1085.5 \\
+\hline
+Indira Gandhi Centre for Atomic Research (IGCAR) Training School & 27.3082 & 87850.6 \\
+\hline
+Vellore Institute of Technology (VIT) & 6.0696 & 5411.14 \\
+\hline
+Jamia Millia Islamia & 5.0288 & 3526.96 \\
+\hline
+Visva-Bharati University & 1.0108 & 356.8 \\
+\end{longtable}
+
+
+\subsection{R Codes}
+
+\subsubsection{Code for printing summary table}
+\inputminted{r}{./r-code/summary-stat.R}
+
+\subsubsection{Code for making the Load Time vs. Page Size bivariate plot}
+\inputminted{r}{./r-code/default-biv-plot.R}
+
+\subsubsection{Code for making the log(Load Time) vs. log(Page Size) bivariate plot}
+\inputminted{r}{./r-code/log-biv-plot.R}
+
+\subsubsection{Code for fitting the linear regression}
+\inputminted{r}{./r-code/model-fit.R}
+
+\subsubsection{Code for plotting residuals}
+\inputminted{r}{./r-code/residual-plot.R}
+
+\subsubsection{Code for making a histogram for the residuals}
+\inputminted{r}{./r-code/residual-hist.R}
+
+\subsection{Python Codes}
+
+The Python scripts can be found at the following
+\href{
+  https://github.com/Bubu-Droid/mini-projects-repo/tree/main/lin-reg-sem-1/data
+}{GitHub repository}.
 
 \end{document}

@@ -17,6 +17,14 @@
 \RequirePackage{amssymb}
 \RequirePackage{hyperref}
 \RequirePackage[capitalize,nameinlink]{cleveref}
+\RequirePackage{csvsimple}
+\RequirePackage{booktabs}
+\RequirePackage{siunitx}
+\RequirePackage{longtable}
+\RequirePackage{caption}
+\RequirePackage{array} 
+\RequirePackage{minted}
+\RequirePackage{setspace}
 
 \hypersetup{%
     pdftitle={\@title},
@@ -30,6 +38,35 @@
     % linktoc=all
 }
 
+% --- Light color palette ---
+\definecolor{codebg}{HTML}{FAFAFA}
+\definecolor{coderule}{HTML}{DDDDDD}
+\definecolor{codecomment}{HTML}{7A7A7A}
+\definecolor{codekeyword}{HTML}{005CC5}
+\definecolor{codestring}{HTML}{DD1144}
+\definecolor{codenum}{HTML}{999999}
+
+% --- Global minted style ---
+\setminted{
+  bgcolor=codebg,
+  fontsize=\small,
+  baselinestretch=1.05,
+  breaklines=true,
+  frame=lines,
+  framesep=2mm,
+  rulecolor=\color{coderule},
+  xleftmargin=1em,
+  linenos,
+  numbersep=8pt,
+  fontfamily=tt,
+  tabsize=2
+}
+
+% Optional: make line numbers gray
+\renewcommand{\theFancyVerbLine}{\textcolor{codenum}{\small\arabic{FancyVerbLine}}}
+
+% Optional: slightly nicer syntax scheme
+\usemintedstyle{friendly}
 
 % Page layout
 \geometry{a4paper, margin=1in}
@@ -71,23 +108,16 @@
 \newcommand{\maketitlepage}[4]{%
     \begin{titlepage}
         \centering
-        \vspace*{2cm} % Added top padding
+        % \vspace*{2cm} % Added top padding
         {\Huge\bfseries #1\par}
-        \vspace{2cm} % Increased space after title
+        \vspace{1cm} % Increased space after title
         {\Large #2\par}
-        \vspace{1.5cm} % Increased space after name
+        \vspace{1cm} % Increased space after name
         {\Large #3\par}
-        \vspace{2.5cm} % Increased space before abstract
-        {\Large\bfseries Abstract\par}
-        \vspace{1cm} % Increased space after abstract heading
-        \begin{minipage}{0.85\textwidth}
-            \begin{center}
-                \abstracttextfont
-                #4
-            \end{center}
-        \end{minipage}
-        \vfill
-        % Removed the footer text
+        \vspace{1.5cm} % Increased space before abstract
+        \begin{abstract}
+          #4
+        \end{abstract}
     \end{titlepage}
 }
 

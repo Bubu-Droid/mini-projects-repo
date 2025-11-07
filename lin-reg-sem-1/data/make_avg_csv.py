@@ -4,11 +4,11 @@ import json
 import numpy as np
 
 # Input and output file paths
-input_file = "website_load_data.json"
-output_file = "averaged_data.csv"
+input_file = "single_data.json"
+output_file = "single_avg.csv"
 
 # Load the JSON data
-with open(input_file, "r") as f:
+with open(input_file, "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Prepare rows for CSV

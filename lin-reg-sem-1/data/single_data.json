@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Amazon",
+    "url": "https://www.amazon.in/",
+    "hits": [
+      {
+        "hit_number": 1,
+        "load_time_s": 2.751,
+        "page_size_kb": 1264.7
+      },
+      {
+        "hit_number": 2,
+        "load_time_s": 3.019,
+        "page_size_kb": 1404.9
+      },
+      {
+        "hit_number": 3,
+        "load_time_s": 2.113,
+        "page_size_kb": 981.8
+      },
+      {
+        "hit_number": 4,
+        "load_time_s": 2.771,
+        "page_size_kb": 990.9
+      },
+      {
+        "hit_number": 5,
+        "load_time_s": 2.866,
+        "page_size_kb": 970.2
+      }
+    ]
+  },
+  {
+    "name": "Project Euler",
+    "url": "https://projecteuler.net/",
+    "hits": [
+      {
+        "hit_number": 1,
+        "load_time_s": 3.037,
+        "page_size_kb": 98.3
+      },
+      {
+        "hit_number": 2,
+        "load_time_s": 3.16,
+        "page_size_kb": 92.2
+      },
+      {
+        "hit_number": 3,
+        "load_time_s": 1.628,
+        "page_size_kb": 92.2
+      },
+      {
+        "hit_number": 4,
+        "load_time_s": 2.003,
+        "page_size_kb": 92.2
+      },
+      {
+        "hit_number": 5,
+        "load_time_s": 2.093,
+        "page_size_kb": 92.2
+      }
+    ]
+  },
+  {
+    "name": "Suckless",
+    "url": "https://suckless.org/",
+    "hits": [
+      {
+        "hit_number": 1,
+        "load_time_s": 4.723,
+        "page_size_kb": 111.3
+      },
+      {
+        "hit_number": 2,
+        "load_time_s": 3.328,
+        "page_size_kb": 111.3
+      },
+      {
+        "hit_number": 3,
+        "load_time_s": 3.804,
+        "page_size_kb": 111.3
+      },
+      {
+        "hit_number": 4,
+        "load_time_s": 3.114,
+        "page_size_kb": 111.3
+      },
+      {
+        "hit_number": 5,
+        "load_time_s": 4.327,
+        "page_size_kb": 111.3
+      }
+    ]
+  }
+]

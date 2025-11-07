@@ -8,8 +8,8 @@ from selenium.webdriver.firefox.service import Service
 
 # ---- CONFIG ----
 NUM_HITS = 5
-OUTPUT_FILE = "test_out_list.json"
-INPUT_FILE = "test_list.json"
+OUTPUT_FILE = "temp.json"
+INPUT_FILE = "single_list.json"
 SLEEP_BETWEEN_HITS = 1  # seconds
 # -----------------
 
