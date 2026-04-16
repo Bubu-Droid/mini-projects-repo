@@ -1,0 +1,273 @@
+\documentclass[12pt]{article}
+\usepackage{statproj}
+\newcommand{\ii}{\item}
+\newcommand{\trans}{%
+  ^{\mathsf{T}}%
+}
+\newcommand{\eps}{\varepsilon}
+
+\title{Project Title}
+\author{Avigyan Chakraborty}
+\date{April, 2026}
+
+\begin{document}
+
+\maketitlepage{\thetitle}{\theauthor}{\thedate}{%
+Project Abstract%
+}
+
+
+\section{Introduction}
+
+Project Introduction.
+
+\section{Data Description}
+
+The dataset used in this study is the
+Palmer Penguins dataset.
+It contains morphological measurements of
+penguins observed in the
+Palmer Archipelago, Antarctica.
+It includes data for three species:
+Adelie, Chinstrap, and Gentoo.
+
+\begin{itemize}
+  \ii \textbf{Body Mass (grams)}:
+    The weight of the penguin,
+    which serves as the response (dependent) variable.
+  \ii \textbf{Flipper Length (mm)}:
+    The length of the penguin’s flipper, used as a predictor.
+  \ii \textbf{Culmen Length (mm)}:
+    The length of the penguin’s bill (beak),
+    measured along the top ridge,
+    used as a predictor.
+  \ii \textbf{Culmen Depth (mm)}:
+    The depth (height) of the penguin’s bill,
+    used as a predictor.
+  \ii \textbf{Species}:
+    A categorical variable indicating the
+    species of the penguin
+    (Adelie, Chinstrap, or Gentoo),
+    also used as a predictor.
+\end{itemize}
+
+The dataset initially contained a small number of
+missing values in some of the numerical variables.
+These observations were removed prior to analysis to
+ensure consistency and reliability of the
+regression models.
+
+The variables selected for this study are
+biologically relevant, as body mass is expected to be
+influenced by structural features such as flipper size
+and bill dimensions,
+along with species-specific characteristics.
+
+\subsection{Summary Statistics}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|| c | c | c | c | c ||}
+\hline
+  \textbf{Variable} & \textbf{Mean}
+  & \textbf{Minimum}
+  & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+\hline\hline
+  \textbf{Body Mass (g)} & 4201.754 & 2700 & 6300 & 801.9545 \\
+  \textbf{Flipper Length (mm)} & 200.9152 & 172 & 231 & 14.06171 \\
+  \textbf{Culmen Length (mm)} & 43.92193 & 32.1 & 59.6 & 5.459584 \\
+  \textbf{Culmen Depth (mm)} & 17.15117 & 13.1 & 21.5 & 1.974793 \\
+\hline
+\end{tabular}
+\caption{Overall Summary Statistics}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|| c | c | c | c | c | c ||}
+\hline
+  \textbf{Species}
+  & \textbf{Variable} & \textbf{Mean}
+  & \textbf{Minimum}
+  & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+  \hline\hline
+  \multirow{4}{*}{\begin{tabular}{c}
+  Adelie \\
+  (151)
+  \end{tabular}}
+  & \textbf{Body Mass (g)} & 3700.662 & 2850 & 4775 & 458.5661 \\
+  & \textbf{Flipper Length (mm)} & 189.9536 & 172 & 210 & 6.539457 \\
+  & \textbf{Culmen Length (mm)} & 38.79139 & 32.1 & 46 & 2.663405 \\
+  & \textbf{Culmen Depth (mm)} & 18.34636 & 15.5 & 21.5 & 1.21665 \\
+  \hline
+  \multirow{4}{*}{\begin{tabular}{c}
+  Gentoo \\
+  (123)
+  \end{tabular}}
+  & \textbf{Body Mass (g)} & 5076.016 & 3950 & 6300 & 504.1162 \\
+  & \textbf{Flipper Length (mm)} & 217.187 & 203 & 231 & 6.484976 \\
+  & \textbf{Culmen Length (mm)} & 47.50488 & 40.9 & 59.6 & 3.081857 \\
+  & \textbf{Culmen Depth (mm)} & 14.98211 & 13.1 & 17.3 & 0.9812198 \\
+  \hline
+  \multirow{4}{*}{\begin{tabular}{c}
+  Chinstrap \\
+  (68)
+  \end{tabular}}
+  & \textbf{Body Mass (g)} & 3733.088 & 2700 & 4800 & 384.3351\\
+  & \textbf{Flipper Length (mm)} & 195.8235 & 178 & 212 & 7.131894 \\
+  & \textbf{Culmen Length (mm)} & 48.83382 & 40.9 & 58 & 3.339256 \\
+  & \textbf{Culmen Depth (mm)} & 18.42059 & 16.4 & 20.8 & 1.135395 \\
+  \hline
+\hline
+\end{tabular}
+\caption{Summary Statistics of Species}
+\end{table}
+
+\section{Model Formulation}
+
+\subsection{Theoretical Assessment}
+
+Biological traits (such as beak dimensions, flipper length,
+and body mass) scale proportionally relative to one another,
+a phenomenon known as allometry.
+This proportional, multiplicative growth is
+mathematically represented by a
+non-linear power law equation: $Y = \alpha X^{\beta}$.
+
+Ordinary Least Squares (OLS) regression can only
+fit strictly linear relationships.
+By applying a natural logarithm to both sides of the
+allometric power law, we algebraically transform the
+biological curve into a perfectly straight line:
+\[
+  \log(Y) = \log(\alpha) + \beta \log(X)
+.\]
+This mathematical linearization allows the standard OLS model
+to accurately capture and estimate the proportional scaling rate
+$(\beta)$ as a simple additive slope.
+
+\subsection{Statistical Assessment}
+
+First, we briefly introduce categorical variables before putting them
+to use. Unlike continuous variables
+(such as Flipper Length or Body Mass) which represent measurable,
+numerical quantities, categorical variables
+represent qualitative groups or labels (such as Penguin Species).
+Ordinary Least Squares (OLS) regression relies on
+strictly numerical equations.
+Therefore, categorical variables must be mathematically transformed
+before they can be included in a linear model.
+
+To incorporate qualitative data, statistical models
+utilize Dummy Variables (also known as One-Hot Encoding).
+This process translates categorical labels into a series of
+binary variables, assigning a $1$ if the condition is met
+and a $0$ if it is not.
+
+In context of our current dataset, we are going to
+use the following categorical variables:
+\begin{itemize}
+  \ii \texttt{Is\_Gen}: $1$ if Gentoo, $0$ otherwise
+  \ii \texttt{Is\_Chin}: $1$ if Chinstrap, $0$ otherwise.
+\end{itemize}
+The baseline, Adelie, is mathematically implied when both
+\texttt{Is\_Gentoo} and \texttt{Is\_Chinstrap} are both $0$.
+We do not account for this separately in the model as it's
+expected value is absorbed directly into the model's intercept,
+$\beta_0$.
+
+Our objective is to predict the response variable,
+\texttt{Body\_M}, using the predictors \texttt{Flip\_L},
+\texttt{Culm\_L}, \texttt{Culm\_D}, \texttt{Is\_Gent}, and
+\texttt{Is\_Chin}. We have $n=342$ row entries in our dataset and
+$p=5$ many parameters. Clearly $n > p+1$. Furthermore,
+if we let $X$ be the $n \times (p+1)$ order matrix
+where the first column has all entries $1$ and the other columns
+have the row-wise entries of the value of the predictors
+stated above, in order, then $X$ has full column rank.
+Therefore, our standing assumptions for multiple linear
+regression have been verified.
+
+We shall now verify the credibility of the normality assumption
+of the errors. First, we fit a model using the raw data from our
+dataset and then compare it with the model fitted by using
+the log-transformed data.
+
+We know that $\hat{\beta}$ is given by $(X\trans X)^{-1} X\trans Y$.
+Plugging in the values for the raw data, we get that
+\[
+  \hat{\beta}_{\text{raw}}
+  = (-4327.327, 20.241, 41.468, 140.328, 934.887, -513.247)\trans
+\]
+for which the corresponding fitted model is
+\begin{align*}
+  \widehat{\texttt{Body\_M}} = -4327.327
+  + 20.241\cdot\texttt{Flip\_L}
+  &+ 41.468\cdot\texttt{Culm\_L}
+  + 140.328\cdot\texttt{Culm\_D} \\
+  &+ 934.887\cdot\texttt{Is\_Gen}
+  -513.247\cdot\texttt{Is\_Chin}
+.\end{align*}
+
+So, the residuals, i.e., $\widehat{\eps_i}$, are given by
+$\texttt{Body\_M}_i - \widehat{\texttt{Body\_M}_i}$.
+Two plots of the residuals for the raw model have been provided
+below:
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/raw-res-plot.pdf}
+    \caption{Plot of Residuals vs. Observation Index for Raw Model}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/raw-res-hist.pdf}
+    \caption{Histogram of Residuals for the Raw Model}
+  \end{minipage}
+\end{figure}
+
+As it can be noted in the histogram plot of the residuals,
+the distribution is skewed towards the right. Thus, this might
+pose problems for the normality assumption.
+
+Now, let us work with the log-transformed model. Proceeding similarly
+before, we get
+\[
+  \hat{\beta}_{\text{log}}
+  = (0.07590, 0.90358, 0.43644, 0.61806, 0.23408, -0.11952)\trans
+\]
+for which the corresponding fitted model is
+\begin{align*}
+  \widehat{\log(\texttt{Body\_M})} = 0.07590
+  &+ 0.90358\cdot\log(\texttt{Flip\_L})
+  + 0.43644\cdot\log(\texttt{Culm\_L}) \\
+  &+ 0.61806\cdot\log(\texttt{Culm\_D})
+  + 0.23408\cdot\texttt{Is\_Gen}
+  -0.11952\cdot\texttt{Is\_Chin}
+.\end{align*}
+In this case, the residuals, i.e., $\widehat{\eps_i}$, are given by
+$\log(\texttt{Body\_M}_i) - \log(\widehat{\texttt{Body\_M}_i})$.
+Two plots of the residuals for the log model have been provided
+below:
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-res-plot.pdf}
+    \caption{Plot of Residuals vs. Observation Index for Log Model}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-res-hist.pdf}
+    \caption{Histogram of Residuals for the Log Model}
+  \end{minipage}
+\end{figure}
+
+While the histogram of the raw model looks like a nice bell curve,
+it stretches out a little bit further in the right tail than the
+left tail. However, in the histogram of the log-transformed model,
+the curve looks almost perfectly and the left and right tails mirror
+each other around the center zero mark.
+
+\end{document}
