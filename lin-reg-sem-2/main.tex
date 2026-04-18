@@ -1,10 +1,9 @@
 \documentclass[12pt]{article}
 \usepackage{statproj}
-\newcommand{\ii}{\item}
-\newcommand{\trans}{%
-  ^{\mathsf{T}}%
-}
-\newcommand{\eps}{\varepsilon}
+
+\definecolor{myblue}{HTML}{4c72b0}
+\definecolor{myorange}{HTML}{dd8452}
+\definecolor{mygreen}{HTML}{55a868}
 
 \title{Project Title}
 \author{Avigyan Chakraborty}
@@ -15,7 +14,6 @@
 \maketitlepage{\thetitle}{\theauthor}{\thedate}{%
 Project Abstract%
 }
-
 
 \section{Introduction}
 
@@ -71,7 +69,7 @@ along with species-specific characteristics.
 \hline
   \textbf{Variable} & \textbf{Mean}
   & \textbf{Minimum}
-  & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+  & \textbf{Maximum} & \textbf{Std. Dev.} \\[0.5ex]
 \hline\hline
   \textbf{Body Mass (g)} & 4201.754 & 2700 & 6300 & 801.9545 \\
   \textbf{Flipper Length (mm)} & 200.9152 & 172 & 231 & 14.06171 \\
@@ -89,7 +87,7 @@ along with species-specific characteristics.
   \textbf{Species}
   & \textbf{Variable} & \textbf{Mean}
   & \textbf{Minimum}
-  & \textbf{Maximum} & \textbf{Std. Dev.} \\ [0.5ex]
+  & \textbf{Maximum} & \textbf{Std. Dev.} \\[0.5ex]
   \hline\hline
   \multirow{4}{*}{\begin{tabular}{c}
   Adelie \\
@@ -118,7 +116,6 @@ along with species-specific characteristics.
   & \textbf{Culmen Length (mm)} & 48.83382 & 40.9 & 58 & 3.339256 \\
   & \textbf{Culmen Depth (mm)} & 18.42059 & 16.4 & 20.8 & 1.135395 \\
   \hline
-\hline
 \end{tabular}
 \caption{Summary Statistics of Species}
 \end{table}
@@ -209,7 +206,7 @@ for which the corresponding fitted model is
   -513.247\cdot\texttt{Is\_Chin}
 .\end{align*}
 
-So, the residuals, i.e., $\widehat{\eps_i}$, are given by
+So, the residuals, i.e., $\hat{\eps}_i$, are given by
 $\texttt{Body\_M}_i - \widehat{\texttt{Body\_M}_i}$.
 Two plots of the residuals for the raw model have been provided
 below:
@@ -217,12 +214,12 @@ below:
   \centering
   \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/raw-res-plot.pdf}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./codes/plots/model-formulation/raw-res-plot.pdf}
     \caption{Plot of Residuals vs. Observation Index for Raw Model}
   \end{minipage}\hfill
   \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/raw-res-hist.pdf}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./codes/plots/model-formulation/raw-res-hist.pdf}
     \caption{Histogram of Residuals for the Raw Model}
   \end{minipage}
 \end{figure}
@@ -246,20 +243,20 @@ for which the corresponding fitted model is
   + 0.23408\cdot\texttt{Is\_Gen}
   -0.11952\cdot\texttt{Is\_Chin}
 .\end{align*}
-In this case, the residuals, i.e., $\widehat{\eps_i}$, are given by
-$\log(\texttt{Body\_M}_i) - \log(\widehat{\texttt{Body\_M}_i})$.
+In this case, the residuals, i.e., $\hat{\eps}_{i}$, are given by
+$\log(\texttt{Body\_M}_i) - \widehat{\log(\texttt{Body\_M}_i)}$.
 Two plots of the residuals for the log model have been provided
 below:
 \begin{figure}[H]
   \centering
   \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-res-plot.pdf}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./codes/plots/model-formulation/log-res-plot.pdf}
     \caption{Plot of Residuals vs. Observation Index for Log Model}
   \end{minipage}\hfill
   \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{./r-code/log-res-hist.pdf}
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{./codes/plots/model-formulation/log-res-hist.pdf}
     \caption{Histogram of Residuals for the Log Model}
   \end{minipage}
 \end{figure}
@@ -269,5 +266,519 @@ it stretches out a little bit further in the right tail than the
 left tail. However, in the histogram of the log-transformed model,
 the curve looks almost perfectly and the left and right tails mirror
 each other around the center zero mark.
+
+This suggests us that using the log-transformed data would be
+better suited to our needs. We shall further verify this
+using goodness of fit test in section ...
+% TODO: add the reference
+
+\section{Model Analysis}
+
+\subsection{Model Estimation}
+The Multiple Linear Regression (MLR) model was fitted
+to the data using Ordinary Least Squares (OLS) estimation.
+As established in the previous section,
+the fitted regression equation utilizes log-transformed
+continuous variables to linearize the underlying
+allometric scaling relationships, and is represented as:
+\begin{align*}
+  \widehat{\log(\texttt{Body\_M})} = 0.07590
+  &+ 0.90358\cdot\log(\texttt{Flip\_L})
+  + 0.43644\cdot\log(\texttt{Culm\_L}) \\
+  &+ 0.61806\cdot\log(\texttt{Culm\_D})
+  + 0.23408\cdot\texttt{Is\_Gen}
+  -0.11952\cdot\texttt{Is\_Chin}
+.\end{align*}
+
+The following scatterplot matrix shows the pairwise relationship
+between our different variables used for this study:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]{./codes/plots/model-analysis/splom.pdf}
+  \caption{Scatterplot matrix of raw morphological traits.
+  Data points and density distributions are colored by species:
+  Adelie (\textcolor{myblue}{blue}),
+  Gentoo (\textcolor{myorange}{orange}),
+  and Chinstrap (\textcolor{mygreen}{green}).}
+\end{figure}
+
+\subsection{Regression Output}
+The results of the regression analysis,
+including the estimated coefficients, standard errors,
+and corresponding p-values, are summarized in Table... %TODO: Add reference
+The model is highly robust, explaining approximately $83.5\%$
+of the variance in the log-transformed body mass of the $342$
+penguins sampled ($R^2 = 0.8353$).
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|| c | c | c | c ||}
+    \hline
+    Predictor Variable & Coefficient ($\hat{\beta}$) & Std. Error & p-value \\
+    \hline\hline
+    Intercept ($\hat{\beta}_0$) & 0.07590 & 0.677 & 0.911 \\
+    $\log(\text{Flip\_L})$ ($\hat{\beta}_1$) & 0.90358 & 0.149 & $< 0.001$ \\
+    $\log(\text{Culm\_L})$ ($\hat{\beta}_2$) & 0.43644 & 0.076 & $< 0.001$ \\
+    $\log(\text{Culm\_D})$ ($\hat{\beta}_3$) & 0.61806 & 0.080 & $< 0.001$ \\
+    Is\_Gen ($\hat{\beta}_4$) & 0.23408 & 0.035 & $< 0.001$ \\
+    Is\_Chin ($\hat{\beta}_5$) & -0.11952 & 0.020 & $< 0.001$ \\
+    \hline
+  \end{tabular}
+  \caption{OLS Regression Results for Penguin Body Mass}
+\end{table}
+
+The following correlation matrix shows the correlation between
+the variables used in this study:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{./codes/plots/model-analysis/corr-matrix.pdf}
+  \caption{Correlation Matrix of Log-Transformed Morphological Traits}
+\end{figure}
+
+The correlation matrix of the log-transformed variables reveals
+clear linear relationships among the morphological traits.
+In particular, log body mass shows a strong positive
+correlation with log flipper length,
+indicating that larger penguins tend to have longer flippers.
+There is also a moderate positive association between
+body mass and culmen length,
+suggesting that heavier penguins generally have longer bills.
+In contrast, culmen depth exhibits a weaker relationship
+with body mass and other variables,
+reflecting less consistent variation across species.
+Overall, the transformation stabilizes variability and
+highlights meaningful linear patterns,
+supporting the suitability of these predictors in a
+multiple linear regression framework.
+
+\subsection{Interpretation of Findings}
+The regression results provide highly significant
+insights into the physical and genetic traits acting
+upon penguin body mass.
+Notably, every predictor variable (excluding the baseline intercept)
+proved to be statistically significant at the $\alpha=0.05$ level:
+
+\begin{itemize}
+  \ii Allometric Scaling: all physical dimensions exhibit
+    a positive and highly significant relationship with body mass
+    ($p < 0.001$).
+    \begin{itemize}
+      \ii For every $1\%$ increase in Flipper Length,
+        body mass is expected to increase by approximately
+        $0.90\%$, holding all else constant.
+      \ii For every $1\%$ increase in Culmen Length,
+        body mass increases by roughly $0.44\%$.
+      \ii For every $1\%$ increase in Culmen Depth,
+        body mass increases by roughly $0.62\%$.
+    \end{itemize}
+  \ii Species Genetics: The inclusion of the
+    dummy variables successfully controls for
+    underlying genetic differences between the species,
+    with Adelie acting as the unstated baseline reference group.
+    Both indicator variables are highly significant ($p < 0.001$).
+    \begin{itemize}
+      \ii The positive coefficient for \texttt{Is\_Gen} ($0.23408$)
+        indicates that, assuming identical physical proportions,
+        a Gentoo penguin is inherently heavier than an Adelie penguin.
+      \ii Conversely, the negative coefficient for
+        \texttt{Is\_Chin} ($-0.11952$) dictates that,
+        assuming identical physical proportions,
+        a Chinstrap penguin is inherently lighter than an Adelie.
+    \end{itemize}
+\end{itemize}
+
+\section{Testing the Model}
+
+\subsection{Confidence Interval Tests}
+
+In multiple linear regression,
+estimating the point values for the coefficients
+$(\hat{\beta}_i)$ provides a single best guess for the
+population parameters. However,
+to account for sampling variability and quantify the
+precision of these estimates, we construct $95\%$
+confidence intervals for each predictor, the mean response,
+and future individual observations.
+
+\subsubsection{Confidence Intervals for Regression Coefficients}
+The true parameter $(\hat{\beta}_i)$ is estimated to fall
+within the following interval with a $95\%$ level of confidence:
+\[
+  \hat{\beta}_i \pm t_{{\alpha}/{2}}(n-p-1)\cdot SE(\hat{\beta}_i)
+.\]
+Plugging in the values, we derive the following interval estimates:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|| c | c | c c ||}
+    \hline
+    Coefficient of & Estimate & Lower Bound ($2.5\%$) & Upper Bound ($97.5\%$) \\[0.5ex]
+    \hline\hline
+    \texttt{Intercept} ($\hat{\beta}_0$) & 0.0759 & -1.2559 & 1.4077 \\
+    $\log(\texttt{Flipper\_Length})$ ($\hat{\beta}_1$) & 0.9036 & 0.6099 & 1.1972 \\
+    $\log(\texttt{Culmen\_Length})$ ($\hat{\beta}_2$) & 0.4364 & 0.2864 & 0.5865 \\
+    $\log(\texttt{Culmen\_Depth})$ ($\hat{\beta}_3$) & 0.6181 & 0.4598 & 0.7763 \\
+    \texttt{Is\_Gentoo} ($\hat{\beta}_4$) & 0.2341 & 0.1648 & 0.3034 \\
+    \texttt{Is\_Chinstrap} ($\hat{\beta}_5$) & -0.1195 & -0.1592 & -0.0798 \\
+    \hline
+  \end{tabular}
+  \caption{$95\%$ Confidence Intervals for the Regression Parameters}
+\end{table}
+
+Because both the response variable and the continuous predictors were
+log-transformed, the coefficients are interpreted as
+elasticities, representing the expected percentage change in
+body mass for a $1\%$ increase in the predictor,
+holding all other variables constant.
+\begin{itemize}
+  \ii \textbf{Flipper Length:} We are $95\%$ confident that for every $1\%$
+  increase in a penguin's flipper length,
+  its expected body mass increases by between $0.61\%$ and $1.20\%$.
+
+  \ii \textbf{Culmen Length:} We are $95\%$ confident that a $1\%$
+  increase in culmen length corresponds to an expected body mass
+  increase of between $0.29\%$ and $0.59\%$.
+
+  \ii \textbf{Culmen Depth:} We are $95\%$ confident that a $1\%$
+  increase in culmen depth is associated with a
+  $0.46\%$ to $0.78\%$ increase in expected body mass.
+
+  \ii \textbf{Species Effects (\texttt{Is\_Gentoo}):}
+    We are $95\%$ confident that,
+    holding all physical measurements constant,
+    a Gentoo penguin will weigh between $17.9\%$ and $35.4\%$
+    more than the baseline Adelie species.
+
+    \ii \textbf{Species Effects (\texttt{Is\_Chinstrap}):}
+    We are $95\%$ confident that,
+    holding all physical measurements constant,
+    a Chinstrap penguin will weigh between $7.7\%$ and $14.7\%$
+    less than the Adelie species.
+
+    \ii \textbf{Intercept:} The $95\%$ confidence interval
+    for the intercept ranges from $-1.2559$ to $1.4077$.
+    The intercept represents the theoretical
+    log body mass of a baseline Adelie penguin with
+    physical measurements of exactly zero.
+\end{itemize}
+
+\subsubsection{Confidence Interval for the Mean Response}
+Let $\mathbf{x}_0$ be
+a column vector containing a specific set of predictor
+values. To estimate the expected value $\mathbb{E}[\log(\texttt{Body\_Mass})]$ at
+$\mathbf{x}_0$, we utilize the full design matrix $\mathbf{X}$
+to account for the covariance among predictors. The $95\%$
+confidence interval for the mean response is given by:
+\[
+  \hat{y}_0 \pm t_{\alpha/2}(n-p-1) \cdot
+  \sqrt{\text{MSE} \cdot \mathbf{x}_0^T
+  (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{x}_0}
+\]
+Here, MSE is the Mean Squared Error, estimating the error
+variance $\sigma^2$. The matrix term
+$\mathbf{x}_0^T (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{x}_0$
+represents the leverage of the specific observation,
+capturing the variance of the fitted value based on the
+multidimensional predictor space.
+
+\paragraph{Application: Expected Mass Across Species}
+To isolate the structural effects of the categorical
+variables, we construct a theoretical standardized penguin
+utilizing the mean of the log-transformed morphological
+measurements. We then predict the expected log body mass
+across all three species profiles, keeping these baseline
+log-dimensions mathematically constant.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|| c | c | c c ||}
+    \hline
+    Species & Point Estimate & Lower Bound & Upper Bound \\
+    \hline\hline
+    Adelie (Baseline) & 8.2651 & 8.2337 & 8.2964 \\
+    Chinstrap         & 8.1456 & 8.1178 & 8.1733 \\
+    Gentoo            & 8.4992 & 8.4581 & 8.5402 \\
+    \hline
+  \end{tabular}
+  \caption{$95\%$ Confidence Intervals for Mean Response}
+\end{table}
+
+Observing the Chinstrap and Gentoo confidence bounds,
+we see parallel shifts relative to the Adelie baseline.
+Because the input traits are identical, we are $95\%$
+confident that the average log body mass of a Gentoo
+population will always remain strictly higher than an
+identically proportioned Adelie population, whereas a
+Chinstrap population will remain strictly lower.
+
+
+\subsubsection{Prediction Interval for a New Observation}
+While the confidence interval predicts the average log body
+mass for all penguins with a specific set of traits, the
+prediction interval predicts the exact log body mass of a
+single, individual new penguin. Because individual
+observations naturally vary around the population mean,
+predicting a single point carries additional irreducible
+uncertainty. The $95\%$ prediction interval
+of $\log(\texttt{Body\_Mass})$ is mathematically
+wider and is expressed as:
+\[
+  \hat{y}_0 \pm t_{\alpha/2}(n-p-1) \cdot
+  \sqrt{\text{MSE} \cdot \left(1 + \mathbf{x}_0^T
+  (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{x}_0\right)}
+\]
+The addition of $1$ inside the parenthetical term accounts
+for the variance of the residual error ($\sigma^2$)
+associated with drawing a new, random individual from the
+population.
+
+\paragraph{Application: Predicting Individual Penguins}
+Using the same theoretical baseline log-dimensions, we now
+calculate the intervals for randomly sampling a single new
+penguin from each respective species.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|| c | c | c c ||}
+    \hline
+    Species & Point Estimate & Lower Bound & Upper Bound \\
+    \hline\hline
+    Adelie (Baseline) & 8.2651 & 8.1107 & 8.4195 \\
+    Chinstrap         & 8.1456 & 7.9918 & 8.2993 \\
+    Gentoo            & 8.4992 & 8.3425 & 8.6558 \\
+    \hline
+  \end{tabular}
+  \caption{$95\%$ Prediction Intervals for New Observations}
+\end{table}
+
+As mathematically expected, these prediction intervals are
+significantly wider than their corresponding confidence
+intervals. This increased width explicitly accounts for the
+inherent random variation ($\sigma^2$) between individual
+penguins, even when they belong to the exact same species
+and share identical physical measurements.
+
+
+\subsection{Hypothesis Testing}
+To formally evaluate the explanatory power and structural
+validity of our multiple log-linear regression model, we
+conduct three distinct tiers of hypothesis testing.
+
+\subsubsection{Global Significance (Overall F-Test)}
+The global F-test evaluates whether the model as a whole
+explains a statistically significant portion of the variance
+in expected log body mass. To do this, we compare the full
+model against a restricted, intercept-only baseline model.
+\begin{itemize}
+  \ii \textbf{Null Hypothesis ($H_0$):} $\beta_1 = \beta_2 =
+  \beta_3 = \beta_4 = \beta_5 = 0$. None of the predictors
+  have a significant linear relationship with the response.
+
+  \ii \textbf{Alternative Hypothesis ($H_1$):} At least one
+  $\beta_i \neq 0$ (for $i \in \{1,2,3,4,5\}$).
+\end{itemize}
+Using the Extra Sum of Squares framework, the test statistic
+evaluates the reduction in Error Sum of Squares (SSE) when
+all predictors are added to the intercept model:
+\[
+  F_0 = \frac{(SSE_{\text{restricted}} -
+  SSE_{\text{full}}) / (df_{\text{restricted}} -
+  df_{\text{full}})}{SSE_{\text{full}} / df_{\text{full}}}
+\]
+For the global test, the restricted intercept-only model
+has $df = n-1$, and the full model containing $5$ predictors
+has $df = n-6$. Evaluating these degrees of freedom, the
+formula simplifies to:
+\[
+  F_0 = \frac{(SSE_{\text{restricted}} -
+  SSE_{\text{full}}) / 5}{MSE_{\text{full}}}
+\]
+Note that for an intercept-only model, the restricted error
+($SSE_{\text{restricted}}$) is mathematically equivalent to
+the Total Sum of Squares (SST) of the dataset.
+
+\paragraph{Calculation and Inference}
+Evaluating the global model yields a massive F-statistic of
+$F_0 = 340.7279$, which corresponds to a p-value strictly
+less than $0.001$ (approx. $3.33 \times 10^{-129}$). Because
+this p-value is significantly smaller than our significance
+level ($\alpha = 0.05$), we reject the null hypothesis. We
+conclude with $95\%$ confidence that the regression model
+as a whole explains a statistically significant proportion
+of the variance in expected log body mass.
+
+
+\subsubsection{Individual Parameter Significance (t-Tests)}
+While the global F-test evaluates the entire model, marginal
+t-tests evaluate the independent contribution of each
+specific predictor, holding all other variables constant.
+\begin{itemize}
+  \ii \textbf{Null Hypothesis ($H_0$):} $\beta_i = 0$. The
+  $i$-th predictor does not significantly affect expected
+  log body mass.
+
+  \ii \textbf{Alternative Hypothesis ($H_1$):} $\beta_i \neq 0$.
+\end{itemize}
+The test statistic is calculated by dividing the parameter
+estimate by its standard error:
+\[
+  t_0 = \frac{\hat{\beta}_i}{SE(\hat{\beta}_i)}
+\]
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|| c | c | c | c ||}
+    \hline
+    Predictor & Estimate ($\hat{\beta}_i$) & t-statistic & p-value \\
+    \hline\hline
+    \texttt{Intercept} & 0.0759 & 0.112 & 0.911 \\
+    $\log(\texttt{Flipper\_Length})$ & 0.9036 & 6.032 & $<0.001$ \\
+    $\log(\texttt{Culmen\_Length})$ & 0.4364 & 5.699 & $<0.001$ \\
+    $\log(\texttt{Culmen\_Depth})$ & 0.6181 & 7.655 & $<0.001$ \\
+    \texttt{Is\_Gentoo} & 0.2341 & 6.620 & $<0.001$ \\
+    \texttt{Is\_Chinstrap} & -0.1195 & -5.901 & $<0.001$ \\
+    \hline
+  \end{tabular}
+  \caption{Marginal t-Tests for Individual Parameters}
+\end{table}
+
+\paragraph{Inference}
+As shown in the table, with the exception of the intercept,
+every morphological and categorical predictor yields a
+p-value strictly less than $0.001$. This strongly rejects
+the null hypotheses at the $\alpha = 0.05$ level, confirming
+that each variable is a highly significant independent
+predictor of log body mass.
+
+
+\subsubsection{Partial F-Test: Joint Species Significance}
+To rigorously justify the inclusion of the categorical
+species indicators, we test their joint significance against
+a restricted model containing only the physical measurements.
+\begin{itemize}
+  \ii \textbf{Null Hypothesis ($H_0$):} $\beta_4 = \beta_5 = 0$.
+  The species classifications provide no additional
+  explanatory power beyond physical dimensions.
+
+  \ii \textbf{Alternative Hypothesis ($H_1$):} At least one
+  species parameter is non-zero.
+\end{itemize}
+The partial F-statistic utilizes the exact same Extra Sum
+of Squares formula as the global test:
+\[
+  F_0 = \frac{(SSE_{\text{restricted}} -
+  SSE_{\text{full}}) / (df_{\text{restricted}} -
+  df_{\text{full}})}{SSE_{\text{full}} / df_{\text{full}}}
+\]
+For our specific partial test, the restricted model contains
+$3$ continuous predictors ($df = n-4$), and the full model
+adds $2$ categorical indicators ($df = n-6$). Evaluating
+the degrees of freedom yields:
+\[
+  F_0 = \frac{(SSE_{\text{restricted}} -
+  SSE_{\text{full}}) / 2}{MSE_{\text{full}}}
+\]
+
+\paragraph{Calculation and Inference}
+Evaluating the joint addition of the species variables
+yields a partial F-statistic of $F_0 = 95.7775$ with a
+corresponding p-value strictly less than $0.001$ (approx.
+$1.21 \times 10^{-33}$). Because this p-value is significantly
+smaller than $\alpha = 0.05$, we firmly reject the null
+hypothesis. This mathematically proves that the categorical
+species indicators provide a highly significant improvement
+to the model's predictive power, strictly justifying their
+inclusion over a model based purely on physical dimensions.
+
+
+\subsection{Goodness of Fit and Model Diagnostics}
+To conclude our analysis, we must verify both the
+explanatory power of the model and the structural validity
+of the Ordinary Least Squares (OLS) assumptions in log-space.
+
+\subsubsection{Variance Explanation}
+The explanatory power of the model is measured by the
+proportion of total variance in log body mass that is
+captured by our selected predictors.
+\begin{itemize}
+  \ii \textbf{Multiple $R^2$ ($0.8353$):} Our model explains
+  $83.53\%$ of the raw variance in the expected log body mass.
+  \ii \textbf{Adjusted $R^2$ ($0.8328$):} Because adding
+  parameters mathematically inflates the raw $R^2$, the
+  adjusted metric penalizes unnecessary complexity. Our high
+  adjusted $R^2$ proves that the inclusion of the categorical
+  species indicators provides a genuine increase in predictive
+  accuracy that heavily outweighs the complexity penalty.
+\end{itemize}
+
+\subsubsection{Visual Residual Diagnostics}
+A regression model is only mathematically valid if its
+unobserved error terms ($\eps$) are random, homoscedastic,
+and independent. We evaluate these Gauss-Markov assumptions
+visually via three diagnostic plots:
+
+\begin{enumerate}
+  \ii \textbf{Residuals vs. Fitted:} The plotted residuals
+  display a random scatter clustered tightly around the
+  horizontal zero-line with no distinct funnels or curves.
+  This confirms that the variance of the errors is constant
+  (homoscedasticity) and that the log-linear structural
+  relationship is strictly appropriate.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth,keepaspectratio]{./codes/plots/model-testing/res-vs-fit.pdf}
+    \caption{Residuals vs. Fitted}
+  \end{figure}
+
+  \ii \textbf{Normal Q-Q Plot:} The standardized residuals
+  tightly hug the theoretical $45$-degree diagonal line,
+  visually indicating that the error terms are normally
+  distributed.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth,keepaspectratio]{./codes/plots/model-testing/qq-plot.pdf}
+    \caption{Normal Q-Q Plot}
+  \end{figure}
+\end{enumerate}
+
+\subsubsection{Pearson Chi-Square Test for Normality}
+To rigorously prove the visual assumption of normality
+established by the Q-Q plot, we apply the Pearson Chi-Square
+Goodness-of-Fit test to the model's standardized residuals.
+
+By standardizing the residuals ($\frac{\eps - \bar{\eps}}{s}$),
+we map them directly to a standard Normal distribution
+curve, $N(0,1)$. We slice this theoretical curve into $k=10$
+equiprobable decile regions, meaning the expected probability
+of a residual falling into any specific region is exactly
+$E_i = 10\%$.
+
+We then map our actual observed standardized residuals
+($O_i$) into these regions. The test statistic evaluates the
+difference between the observed counts and the theoretically
+expected counts:
+\[
+  \chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}
+\]
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{./codes/plots/model-testing/pearson-chisq.pdf}
+  \caption{Chi-Square Goodness-of-Fit Test for Normality}
+\end{figure}
+
+\paragraph{Calculation and Inference}
+Evaluating the standardized residuals across $10$ equiprobable
+bins yields a test statistic of $\chi^2 = 9.6374$. With
+$k-3 = 7$ degrees of freedom (accounting for the estimation
+of the mean and variance), this corresponds to a p-value of
+$0.2101$.
+
+Because this p-value is strictly greater than our significance
+threshold ($\alpha = 0.05$), we \textbf{fail to reject} the
+null hypothesis. This mathematically proves that our residuals
+do not significantly deviate from a normal distribution.
+Consequently, all confidence intervals, prediction intervals,
+and hypothesis tests calculated in the preceding sections are
+firmly structurally valid.
 
 \end{document}
