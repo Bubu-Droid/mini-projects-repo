@@ -1,4 +1,4 @@
-df <- read.csv("../penguins_cleaned.csv")
+df <- read.csv("../../penguins_cleaned.csv")
 
 df$Is_Gentoo <- as.numeric(grepl("Gentoo", df$Species))
 df$Is_Chinstrap <- as.numeric(grepl("Chinstrap", df$Species))

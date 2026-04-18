@@ -1,4 +1,4 @@
-data <- read.csv("../penguins_cleaned.csv")
+df <- read.csv("../../penguins_cleaned.csv")
 data_chinstrap <- data[data$Species == "Chinstrap penguin (Pygoscelis antarctica)", ]
 
 # ======================================

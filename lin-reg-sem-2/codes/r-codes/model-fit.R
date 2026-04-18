@@ -1,4 +1,4 @@
-data <- read.csv("../penguins_cleaned.csv")
+df <- read.csv("../../penguins_cleaned.csv")
 
 data$Is_Gentoo <- ifelse(data$Species == "Gentoo penguin (Pygoscelis papua)", 1, 0)
 data$Is_Chinstrap <- ifelse(data$Species == "Chinstrap penguin (Pygoscelis antarctica)", 1, 0)

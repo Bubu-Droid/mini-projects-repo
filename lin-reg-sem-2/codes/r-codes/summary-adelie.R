@@ -1,4 +1,4 @@
-data <- read.csv("../penguins_cleaned.csv")
+df <- read.csv("../../penguins_cleaned.csv")
 data_adelie <- data[data$Species == "Adelie Penguin (Pygoscelis adeliae)", ]
 
 # ======================================

@@ -135,14 +135,17 @@
         \doublerule
         % \vspace{1cm} % Increased space before abstract
         \begin{abstract}
+          \vspace*{-0.5cm}
           #4
         \end{abstract}
     \end{titlepage}
 }
 
 \newcommand{\makecontents}{%
+    \newgeometry{left=1in,top=1in,right=1in,bottom=0.5cm}
     \tableofcontents
-    \vspace{1cm} % Added space after TOC
+    \restoregeometry
+    \thispagestyle{empty}
     \newpage
 }
 

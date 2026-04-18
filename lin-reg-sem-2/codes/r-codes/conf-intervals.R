@@ -1,4 +1,4 @@
-df <- read.csv("../penguins_cleaned.csv")
+df <- read.csv("../../penguins_cleaned.csv")
 
 df$log_Body_Mass <- log(df$Body_Mass)
 df$log_Flipper_Length <- log(df$Flipper_Length)
