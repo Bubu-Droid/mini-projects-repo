@@ -234,7 +234,7 @@
   The baseline, Adelie, is mathematically implied when both
   \texttt{Is\_Gen} and \texttt{Is\_Chin} are equal to $0$.
   We do not account for this separately in the model as
-  its effect is absorbed into the intercept is absorbed directly
+  its effect is absorbed directly
   into the model's intercept, $\beta_0$.
 
   Our objective is to predict the response variable,
@@ -452,14 +452,14 @@
           \ii The positive coefficient for \texttt{Is\_Gen} ($0.23408$)
           indicates that, assuming identical physical proportions,
           a Gentoo penguin is expected to have approximately
-          $e^{(0.23408)}-1 \approx 26.4\%$
+          $26.4\%$
           greater body mass than an Adelie penguin,
           holding other variables constant.
           \ii Conversely, the negative coefficient for
           \texttt{Is\_Chin} ($-0.11952$) dictates that,
           assuming identical physical proportions,
           a Chinstrap penguin is expected to have approximately
-          $e^{(-0.11952)}-1 \approx -11.3\%$
+          $-11.3\%$
           lower body mass than an Adelie penguin,
           holding other variables constant.
       \end{itemize}
@@ -550,7 +550,7 @@
   \subsubsection{Confidence Intervals for the Mean Response}
   Let $x_0$ be
   a column vector containing a specific set of predictor
-  values. To estimate the expected value $\mathbb{E}[\log(\texttt{Body\_Mass})]$ at
+  values. To estimate the expected value $\mathbb{E}[\log(\texttt{Body\_M})]$ at
   $x_0$, we utilize the matrix $X$
   to account for the covariance among predictors. The $95\%$
   confidence interval for the mean response is given by:
@@ -598,16 +598,16 @@
 
   \subsubsection{Prediction Intervals}
   While the confidence interval predicts
-  $\mathbb{E}[\log(\texttt{Body\_Mass})]$
+  $\mathbb{E}[\log(\texttt{Body\_M})]$
   for all penguins with a specific set of traits, the
   prediction interval predicts the exact
-  $\log(\texttt{Body\_Mass})$
+  $\log(\texttt{Body\_M})$
   of a
   single, individual new penguin. Because individual
   observations naturally vary around the population mean,
   predicting a single point carries additional irreducible
   uncertainty. The $95\%$ prediction interval
-  of $\log(\texttt{Body\_Mass})$ is mathematically
+  of $\log(\texttt{Body\_M})$ is mathematically
   wider and is expressed as:
   \[
     \hat{y}_0 \pm t_{\alpha/2}(n-p-1) \cdot
